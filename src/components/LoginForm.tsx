@@ -1,62 +1,69 @@
-import React, { useState } from "react";
-import AuthService from "../services/AuthService";
+import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
+import useAxios from "../hooks/useAxios";
 
 export class LiteUser {
-    username: string | undefined;
-    isAdmin: Boolean;
-  
-    constructor() {
-      this.username = undefined;
-      this.isAdmin = false;
-    }
+  username: string | undefined;
+  isAdmin: Boolean;
+
+  constructor() {
+    this.username = undefined;
+    this.isAdmin = false;
   }
+}
 
 export class LoginResponse {
-    user: LiteUser;
-    token: string;
-  
-    constructor() {
-      this.user = new LiteUser();
-      this.token = "";
-    }
+  user: LiteUser;
+  token: string;
+
+  constructor() {
+    this.user = new LiteUser();
+    this.token = "";
   }
+}
 
 const LoginForm = () => {
-    const { principal, setPrincipal } = useUserContext();
-    const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    
-    const changeUsername = (e: React.FormEvent<HTMLInputElement>): void => {
-        setUsername(e.currentTarget.value);
-      };
-    
-    const changePassword = (e: React.FormEvent<HTMLInputElement>) => {
-        setPassword(e.currentTarget.value);
-    }
+  const { setPrincipal } = useUserContext();
 
-    const login = () => {
-        AuthService.login(username,password).then(
-            (data : LoginResponse) => { 
-                setPrincipal({
-                    isAuthenticated: true,
-                    username: data.user.username,
-                    isAdmin: data.user.isAdmin,
-                })
-                alert('Yay');
-            },
-            error => { alert(error) }
-        )
-    }
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-    return (
-        <>
-            <h3>🔐 Ingres&aacute; tu apodo y contrase&ntilde;a</h3>
-            <input type="text" placeholder="Apodo" value={username} onChange={changeUsername}/>
-            <input type="password" placeholder="Contrase&ntilde;a" value={password} onChange={changePassword}/>
-            <button type="button" onClick={login}>Entrar</button>
-        </>
-    )
+  const { response, loading, error, sendData } = useAxios({
+    lazy: true,
+    method: "POST",
+    url: `/auth/login`,
+    data: { username, password }
+  });
+
+  const changeUsername = (e: React.FormEvent<HTMLInputElement>): void => {
+    setUsername(e.currentTarget.value);
+  };
+
+  const changePassword = (e: React.FormEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value);
+  }
+
+  useEffect(() => {
+    if (response?.data) {
+      const data = response.data as LoginResponse;
+      setPrincipal({
+        isAuthenticated: true,
+        username: data.user.username,
+        isAdmin: data.user.isAdmin,
+        token: data.token
+      });
+    }
+  }, [response]);
+
+  return (
+    <>
+      <h3>🔐 Ingres&aacute; tu apodo y contrase&ntilde;a</h3>
+      <p>Error {error?.message}</p>
+      <input type="text" placeholder="Apodo" value={username} onChange={changeUsername} />
+      <input type="password" placeholder="Contrase&ntilde;a" value={password} onChange={changePassword} />
+      <button type="button" onClick={sendData}>Entrar</button>
+    </>
+  )
 }
 
 export default LoginForm;

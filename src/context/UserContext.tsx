@@ -4,11 +4,13 @@ export class Principal {
   isAuthenticated: Boolean;
   username: string | undefined;
   isAdmin: Boolean;
+  token: string | undefined;
 
   constructor() {
     this.isAuthenticated = false;
     this.username = undefined;
     this.isAdmin = false;
+    this.token = undefined;
   }
 }
 

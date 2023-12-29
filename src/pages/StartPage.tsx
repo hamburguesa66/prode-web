@@ -6,11 +6,10 @@ import { Navigate } from "react-router-dom";
 
 
 const StartPage = () => {
-    const { principal, setPrincipal } = useUserContext();
+    const { principal } = useUserContext();
     return (
         <>
             {principal.isAuthenticated && <Navigate to="/home" replace={true} />}
-            <p><code>debug</code> API URL: {process.env.REACT_APP_API_URL}</p>
             <table>
                 <tbody>
                     <tr>
