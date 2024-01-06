@@ -30,7 +30,7 @@ const GameCard = (props: GamePanelProps) => {
                                     alt={props.game.homeTeam.name} 
                                     title={props.game.homeTeam.name} />
                                 <br/>
-                                <code>-</code>
+                                <code>{props.game.homeTeamScore || "-"}</code>
                             </td>
                             <td>
                                 <img
@@ -38,7 +38,7 @@ const GameCard = (props: GamePanelProps) => {
                                     alt={props.game.awayTeam.name} 
                                     title={props.game.awayTeam.name} />
                                 <br/>
-                                <code>-</code>
+                                <code>{props.game.awayTeamScore || "-"}</code>
                             </td>
                             <td>
                                 <img 
@@ -52,7 +52,7 @@ const GameCard = (props: GamePanelProps) => {
                                 {dayjs(props.game.date).format("DD/MM HH:mm")}hs
                             </td>
                             <td>
-                                No iniciado
+                                TO-DO {props.game.result || "-"}
                             </td>
                         </tr>
                     </tbody>
