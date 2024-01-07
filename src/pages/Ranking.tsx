@@ -11,7 +11,10 @@ const Ranking = () => {
     return (
         <>
             {!principal.isAuthenticated && <Navigate to="/" replace={true} />}
-            <div>Ranking</div>
+            <h2>🏆 Ranking</h2>
+            <pre>
+                <code>🚧 En construcci&oacute;n</code>
+            </pre>
         </>
     )
 }

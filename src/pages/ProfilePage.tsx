@@ -7,7 +7,10 @@ const ProfilePage = () => {
     return (
         <>
             {!principal.isAuthenticated && <Navigate to="/" replace={true} />}
-            <div>ProfilePage</div>
+            <h2>👤 Mi usuario</h2>
+            <pre>
+                <code>🚧 En construcci&oacute;n</code>
+            </pre>
         </>
     )
 }
