@@ -23,6 +23,7 @@ export interface Game {
     awayTeam: Team,
     competition: Competition,
     date: Date,
+    state: string,
     result: string | undefined,
     homeTeamScore: number | undefined,
     awayTeamScore: number | undefined

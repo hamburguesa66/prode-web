@@ -13,3 +13,8 @@
 .game-card-container td {
     text-align: center;
 }
+
+#bet-dialog {
+    position: relative;
+    z-index: 10000000;
+}
