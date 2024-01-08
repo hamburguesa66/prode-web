@@ -10,18 +10,8 @@ const StartPage = () => {
     return (
         <>
             {principal.isAuthenticated && <Navigate to="/home" replace={true} />}
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <LoginForm />
-                        </td>
-                        <td>
-                            <SignUpForm />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <LoginForm />
+            <SignUpForm />
         </>
     )
 }

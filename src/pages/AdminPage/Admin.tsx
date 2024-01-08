@@ -11,7 +11,7 @@ const Admin = () => {
 
     return (
         <>
-            {!principal.isAuthenticated && <Navigate to="/" replace={true} />}
+            {(!principal.isAuthenticated || !principal.isAdmin) && <Navigate to="/" replace={true} />}
             <h2>🛠️ Administraci&oacute;n</h2>
             <AdminGameTable />
             <CreateGameForm />

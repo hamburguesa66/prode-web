@@ -55,13 +55,25 @@ const LoginForm = () => {
     }
   }, [response]);
 
+  useEffect(() => {
+    if (error) {
+      if(error.response?.status && (error.response.status === 400 || error.response.status === 404)) {
+        alert("❗ Los datos ingresados no son válidos.");
+      } else {
+        alert("💀 El servidor no está disponible en este momento.");
+      }
+    }
+  }, [error]);
+
   return (
     <>
-      <h3>🔐 Ingres&aacute; tu apodo y contrase&ntilde;a</h3>
-      <p>Error {error?.message}</p>
-      <input type="text" placeholder="Apodo" value={username} onChange={changeUsername} />
-      <input type="password" placeholder="Contrase&ntilde;a" value={password} onChange={changePassword} />
-      <button type="button" onClick={sendData}>Entrar</button>
+      <h3>🔑 Entrar</h3>
+      <p>Ingres&aacute; tu apodo y contrase&ntilde;a</p>
+      <input type="text" placeholder="Apodo" value={username} onChange={changeUsername} maxLength={16} />
+      <input type="password" placeholder="Contrase&ntilde;a" value={password} onChange={changePassword} maxLength={16} />
+      <button type="button" onClick={sendData} disabled={loading || username.length < 8 || password.length < 8}>
+        {loading && <i className="spin">⌛</i>}{!loading && "Entrar"}
+      </button>
     </>
   )
 }
