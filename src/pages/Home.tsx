@@ -47,7 +47,7 @@ const Home = () => {
 
     const [games, setGames] = useState<GameWithBet[]>([]);
 
-    const { response } = useAxios({
+    const { response, loading, error } = useAxios({
         lazy: false,
         method: "GET",
         url: `/my`,
@@ -68,7 +68,28 @@ const Home = () => {
                 <>
                     <h2>🏠 Home</h2>
                     <h3>&Uacute;ltimos partidos</h3>
-                    {games.map(it => <GameCard game={it.game} bet={it.bet} />)}
+                    {loading ? (
+                        <>
+                            <pre>
+                                <code><i className="spin">⌛</i> Cargando partidos ...</code>
+                            </pre>
+                        </>
+                    ) : (
+                        <>
+                            {error ? (
+                                <>
+                                    <pre>
+                                        <code>❗ Oops, ha ocurrido un problema</code>
+                                    </pre>I
+                                </>
+                            ) : (
+                                <>
+                                    {games.map(it => <GameCard game={it.game} bet={it.bet} />)}
+                                </>
+                            )}
+                        </>
+                    )}
+
                 </>
             )}
         </>

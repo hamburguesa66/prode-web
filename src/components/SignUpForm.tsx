@@ -34,7 +34,11 @@ const SignUpForm = () => {
     useEffect(() => {
         if (response) {
             alert("✅ Registro completado correctamente.");
-            window.location.reload();
+            setUsername("");
+            setPassword("");
+            setRePassword("");
+            setTerms(false);
+            setConditions(false);
         }
     }, [response]);
 

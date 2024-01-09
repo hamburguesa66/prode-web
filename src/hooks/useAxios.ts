@@ -33,6 +33,7 @@ const useAxios = (axiosParams: IAxiosRequest) => {
     };
 
     const sendData = () => {
+        setLoading(true);
         fetchData(axiosParams);
     }
 
