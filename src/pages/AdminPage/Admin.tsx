@@ -8,14 +8,18 @@ import AdminGameTable from "./components/AdminGameTable";
 const Admin = () => {
     const { principal } = useUserContext();
 
-
     return (
         <>
-            {(!principal.isAuthenticated || !principal.isAdmin) && <Navigate to="/" replace={true} />}
-            <h2>🛠️ Administraci&oacute;n</h2>
-            <AdminGameTable />
-            <CreateGameForm />
-            <AdminUserTable />
+            {(!principal.isAuthenticated || !principal.isAdmin) ? (
+                <Navigate to="/" replace={true} />
+            ) : (
+                <>
+                    <h2>🛠️ Administraci&oacute;n</h2>
+                    <AdminGameTable />
+                    <CreateGameForm />
+                    <AdminUserTable />
+                </>
+            )}
         </>
     )
 }

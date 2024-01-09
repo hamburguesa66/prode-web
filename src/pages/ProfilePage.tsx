@@ -6,11 +6,16 @@ const ProfilePage = () => {
 
     return (
         <>
-            {!principal.isAuthenticated && <Navigate to="/" replace={true} />}
-            <h2>👤 Mi usuario</h2>
-            <pre>
-                <code>🚧 En construcci&oacute;n</code>
-            </pre>
+            {!principal.isAuthenticated ? (
+                <Navigate to="/" replace={true} />
+            ) : (
+                <>
+                    <h2>👤 Mi usuario</h2>
+                    <pre>
+                        <code>🚧 En construcci&oacute;n</code>
+                    </pre>
+                </>
+            )}
         </>
     )
 }

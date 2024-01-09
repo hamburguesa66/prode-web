@@ -45,28 +45,32 @@ export interface GameWithBet {
 const Home = () => {
     const { principal } = useUserContext();
 
-    const [ games, setGames ] = useState<GameWithBet[]>([]);
+    const [games, setGames] = useState<GameWithBet[]>([]);
 
-    const { response, loading, error, sendData } = useAxios({
+    const { response } = useAxios({
         lazy: false,
         method: "GET",
         url: `/my`,
         data: undefined
-      });
+    });
 
-      useEffect(() => {
+    useEffect(() => {
         if (response?.data) {
             setGames(response.data as GameWithBet[]);
         }
-      }, [response]);    
+    }, [response]);
 
     return (
         <>
-            {!principal.isAuthenticated && <Navigate to="/" replace={true} />}
-            
-            <h2>🏠 Home</h2>
-            <h3>&Uacute;ltimos partidos</h3>
-            { games.map(it => <GameCard game={it.game} bet={it.bet}/>) }
+            {!principal.isAuthenticated ? (
+                <Navigate to="/" replace={true} />
+            ) : (
+                <>
+                    <h2>🏠 Home</h2>
+                    <h3>&Uacute;ltimos partidos</h3>
+                    {games.map(it => <GameCard game={it.game} bet={it.bet} />)}
+                </>
+            )}
         </>
     )
 }
