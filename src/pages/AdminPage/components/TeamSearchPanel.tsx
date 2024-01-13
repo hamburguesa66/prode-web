@@ -28,6 +28,7 @@ const TeamSearchPanel = () => {
             Buscar equipo/s por nombre:
             <input type="text" value={query} onChange={changeQuery} readOnly={loading}/>
             <button type="button" onClick={sendData} disabled={loading}>Buscar</button>
+            {loading && <i className="spin">⌛</i>}
             {!loading && !error && <ul style={{ listStyle: "none", paddingLeft: "0px" }}>
                 {teams.length == 0 && <li>Sin resultados</li>}
                 {teams.map(it => <li><code>ID {it.id}</code> | {it.name}</li>)}

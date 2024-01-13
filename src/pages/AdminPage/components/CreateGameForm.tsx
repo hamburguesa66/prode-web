@@ -60,31 +60,21 @@ const CreateGameForm = () => {
     return (
         <>
             <h3>📝 Crear un partido</h3>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            ID Equipo Local:
-                            <input type="number" value={homeTeamId} onChange={changeHomeTeamId} />
-                            ID Equipo Visitante:
-                            <input type="number" value={awayTeamId} onChange={changeAwayTeamId} />
-                            ID Torneo:
-                            <input type="number" value={competitionId} onChange={changeCompetitionId} />
-                            Fecha:
-                            <input type="datetime-local" value={date} onChange={changeDate} />
-                            <button type="button" onClick={sendData}>Crear</button>
-                        </td>
-                        <td>
-                            <div style={{ backgroundColor: "#f6f6f6", padding: "1rem" }}>
-
-                                <TeamSearchPanel />
-                                <hr />
-                                <CompetitionSearchPanel />
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            ID Equipo Local:
+            <input type="number" value={homeTeamId} onChange={changeHomeTeamId} />
+            ID Equipo Visitante:
+            <input type="number" value={awayTeamId} onChange={changeAwayTeamId} />
+            ID Torneo:
+            <input type="number" value={competitionId} onChange={changeCompetitionId} />
+            Fecha:
+            <input type="datetime-local" value={date} onChange={changeDate} />
+            <button type="button" onClick={sendData}>Crear</button>
+            <hr />
+            <h3>🔎 Buscador de equipos</h3>
+            <TeamSearchPanel />
+            <hr />
+            <h3>🔎 Buscador de competiciones</h3>
+            <CompetitionSearchPanel />
         </>
     )
 }
