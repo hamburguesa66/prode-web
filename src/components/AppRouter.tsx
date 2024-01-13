@@ -11,7 +11,6 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
         <Header />
-
         <Routes>
           <Route path="/" Component={StartPage} />
           <Route path="/home" Component={Home} />

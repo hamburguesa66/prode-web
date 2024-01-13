@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
-import { Competition, Team } from "../../Home";
+import { Competition } from "../../../model/Competition";
 
 const CreateCompetitionForm = () => {
     const [name, setName] = useState<string>("");

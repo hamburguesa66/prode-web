@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TeamSearchPanel from "./TeamSearchPanel";
 import CompetitionSearchPanel from "./CompetitionSearchPanel";
 import useAxios from "../../../hooks/useAxios";
-import { Game } from "../../Home";
+import { Game } from "../../../model/Game";
 
 const CreateGameForm = () => {
     const [homeTeamId, setHomeTeamId] = useState<number>(0);
@@ -26,7 +26,7 @@ const CreateGameForm = () => {
         setDate(e.currentTarget.value);
     };
 
-    const { response, loading, error, sendData } = useAxios({
+    const { response, error, sendData } = useAxios({
         lazy: true,
         method: "POST",
         url: `/game`,

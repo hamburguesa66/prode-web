@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
-import { Team } from "../../Home";
+import { Team } from "../../../model/Team";
 
 const CreateTeamForm = () => {
     const [name, setName] = useState<string>("");

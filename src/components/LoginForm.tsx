@@ -1,26 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import useAxios from "../hooks/useAxios";
-
-export class LiteUser {
-  username: string | undefined;
-  isAdmin: Boolean;
-
-  constructor() {
-    this.username = undefined;
-    this.isAdmin = false;
-  }
-}
-
-export class LoginResponse {
-  user: LiteUser;
-  token: string;
-
-  constructor() {
-    this.user = new LiteUser();
-    this.token = "";
-  }
-}
+import { LoginResponse } from "../model/LoginResponse";
 
 const LoginForm = () => {
   const { setPrincipal } = useUserContext();
@@ -53,7 +34,7 @@ const LoginForm = () => {
         token: data.token
       });
     }
-  }, [response]);
+  }, [response, setPrincipal]);
 
   useEffect(() => {
     if (error) {

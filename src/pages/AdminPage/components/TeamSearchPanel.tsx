@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Team } from "../../Home";
+import { Team } from "../../../model/Team";
 import useAxios from "../../../hooks/useAxios";
 
 const TeamSearchPanel = () => {
@@ -30,7 +30,7 @@ const TeamSearchPanel = () => {
             <button type="button" onClick={sendData} disabled={loading}>Buscar</button>
             {loading && <i className="spin">⌛</i>}
             {!loading && !error && <ul style={{ listStyle: "none", paddingLeft: "0px" }}>
-                {teams.length == 0 && <li>Sin resultados</li>}
+                {teams.length === 0 && <li>Sin resultados</li>}
                 {teams.map(it => <li><code>ID {it.id}</code> | {it.name}</li>)}
             </ul>}
         </>

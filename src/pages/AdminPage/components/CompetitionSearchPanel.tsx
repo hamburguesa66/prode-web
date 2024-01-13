@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Competition } from "../../Home";
+import { Competition } from "../../../model/Competition";
 import useAxios from "../../../hooks/useAxios";
 
 const CompetitionSearchPanel = () => {
@@ -30,7 +30,7 @@ const CompetitionSearchPanel = () => {
             <button type="button" onClick={sendData} disabled={loading}>Buscar</button>
             {loading && <i className="spin">⌛</i>}
             {!loading && !error && <ul style={{ listStyle: "none", paddingLeft: "0px" }}>
-                {competitions.length == 0 && <li>Sin resultados</li>}
+                {competitions.length === 0 && <li>Sin resultados</li>}
                 {competitions.map(it => <li><code>ID {it.id}</code> | {it.name}</li>)}
             </ul>}
         </>

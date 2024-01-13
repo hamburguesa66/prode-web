@@ -3,44 +3,7 @@ import { useUserContext } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import GameCard from "../components/Shared/GameCard";
-
-export interface Team {
-    id: number,
-    name: string,
-    logo: string
-}
-
-export interface Competition {
-    id: number,
-    name: string,
-    hashtag: string,
-    logo: string
-}
-
-export interface Game {
-    id: number,
-    homeTeam: Team,
-    awayTeam: Team,
-    competition: Competition,
-    date: Date,
-    state: string,
-    result: string | undefined,
-    homeTeamScore: number | undefined,
-    awayTeamScore: number | undefined
-}
-
-export interface Bet {
-    id: number,
-    userUuid: string | undefined,
-    gameId: number,
-    result: string,
-    date: Date
-}
-
-export interface GameWithBet {
-    game: Game,
-    bet: Bet | undefined;
-}
+import { GameWithBet } from "../model/GameWithBet";
 
 const Home = () => {
     const { principal } = useUserContext();

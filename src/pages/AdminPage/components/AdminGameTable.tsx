@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Game } from "../../Home";
+import { Game } from "../../../model/Game";
 import useAxios from "../../../hooks/useAxios";
 import dayjs from "dayjs";
 
@@ -24,7 +24,7 @@ const AdminGameTable = () => {
         setAwayTeamGoals(e.currentTarget.valueAsNumber);
     }
 
-    const { response, loading, error, sendData } = useAxios({
+    const { response } = useAxios({
         lazy: false,
         method: "GET",
         url: `/game`,
@@ -39,7 +39,6 @@ const AdminGameTable = () => {
 
     const {
         response: deleteResponse,
-        loading: deleteLoading,
         error: deleteError,
         sendData: sendDelete
     } = useAxios({
@@ -85,7 +84,6 @@ const AdminGameTable = () => {
 
     const {
         response: updateResponse,
-        loading: updateLoading,
         error: updateError,
         sendData: sendUpdate
     } = useAxios({
@@ -119,7 +117,7 @@ const AdminGameTable = () => {
             if (action[0] === "DELETE") {
                 sendDelete();
             }
-            if (action[0] == "CLOSE") {
+            if (action[0] === "CLOSE") {
                 sendUpdate();
             }
         }

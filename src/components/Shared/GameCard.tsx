@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './GameCard.css';
-import { Bet, Game } from "../../pages/Home";
+import { Bet } from "../../model/Bet";
+import { Game } from "../../model/Game";
 import dayjs from "dayjs";
 import useAxios from "../../hooks/useAxios";
 
@@ -17,7 +18,7 @@ const GameCard = (props: GamePanelProps) => {
         setBetResult(e.currentTarget.value);
     };
 
-    const { response, loading, error, sendData } = useAxios({
+    const { response, error, sendData } = useAxios({
         lazy: true,
         method: "POST",
         url: `/bet`,
