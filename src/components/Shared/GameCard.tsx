@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './GameCard.css';
 import { Bet } from "../../model/Bet";
 import { Game } from "../../model/Game";
 import dayjs from "dayjs";
-import useAxios from "../../hooks/useAxios";
+import Modal from "react-responsive-modal";
+import BetForm from "../../pages/HomePage/components/BetForm";
 
 export interface GamePanelProps {
     game: Game;
@@ -12,42 +13,13 @@ export interface GamePanelProps {
 
 const GameCard = (props: GamePanelProps) => {
     const [openDialog, setOpenDialog] = useState<boolean>(false);
-    const [betResult, setBetResult] = useState<string>(props.bet?.result || "");
-
-    const changeBetResult = (e: React.FormEvent<HTMLSelectElement>): void => {
-        setBetResult(e.currentTarget.value);
-    };
-
-    const { response, error, sendData } = useAxios({
-        lazy: true,
-        method: "POST",
-        url: `/bet`,
-        data: {
-            gameId: props.game.id,
-            result: betResult
-        }
-    });
-
-    useEffect(() => {
-        if (response) {
-            alert(`Tu apuesta fue registrada correctamente`);
-            window.location.reload();
-        }
-    }, [response]);
-
-    useEffect(() => {
-        if (error) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(error);
-        }
-    }, [error]);
 
     const getResultDisplayName = (aResult: string | undefined) => {
         switch (aResult) {
             case "HOME_TEAM_WON":
-                return "Local";
+                return "Gana " + props.game.homeTeam.name + " (Local)";
             case "AWAY_TEAM_WON":
-                return "Visitante"
+                return "Gana" + props.game.awayTeam.name + " (Visitante)";
             case "DRAW":
                 return "Empate";
             default:
@@ -72,6 +44,10 @@ const GameCard = (props: GamePanelProps) => {
 
     return (
         <>
+            <Modal open={openDialog} onClose={() => setOpenDialog(false)} center>
+                <BetForm
+                    game={props.game} bet={props.bet} />
+            </Modal>
             <div className="game-card-container">
                 <table>
                     <thead>
@@ -123,19 +99,7 @@ const GameCard = (props: GamePanelProps) => {
                     <tfoot>
                         <tr>
                             <td colSpan={5} style={{ backgroundColor: getFooterBackgroundColor() }}>
-                                <dialog open={openDialog} id="bet-dialog">
-                                    <header>Hacer una apuesta:</header>
-                                    Resultado:
-                                    <select style={{ width: "100%" }} defaultValue={betResult} onChange={(e) => changeBetResult(e)}>
-                                        {!props.bet && <option disabled={true} selected={true}>Seleccione una opci&oacute;n</option>}
-                                        <option value="HOME_TEAM_WON">Gan&oacute; Equipo Local</option>
-                                        <option value="AWAY_TEAM_WON">Gan&oacute; Equipo Visitante</option>
-                                        <option value="DRAW">Empate</option>
-                                    </select>
-                                    <button type="button" onClick={() => sendData()}>Enviar</button>
-                                    <button type="button" onClick={() => setOpenDialog(false)}>Cancelar</button>
-                                </dialog>
-                                {!openDialog && <section>
+                                <section>
                                     Tu apuesta: <code>{getResultDisplayName(props?.bet?.result)}</code>
                                     {props.game.state === 'NOT_STARTED' && <>
                                         <br />
@@ -145,7 +109,7 @@ const GameCard = (props: GamePanelProps) => {
                                     </>}
                                     {props.game.state === 'DONE' && props?.bet?.result === props.game.result && <>✅</>}
                                     {props.game.state === 'DONE' && props?.bet?.result !== props.game.result && <>❌</>}
-                                </section>}
+                                </section>
                             </td>
                         </tr>
                     </tfoot>
