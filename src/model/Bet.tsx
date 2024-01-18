@@ -2,6 +2,6 @@ export interface Bet {
     id: number;
     userUuid: string | undefined;
     gameId: number;
-    result: string;
+    gameResult: string;
     date: Date;
 }

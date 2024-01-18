@@ -32,7 +32,7 @@ const GameCard = (props: GamePanelProps) => {
             if (props.game.state !== 'DONE') {
                 return "#e6f4ff";
             } else {
-                if (props.bet.result === props.game.result) {
+                if (props.bet.gameResult === props.game.result) {
                     return "#f6ffed";
                 } else {
                     return "#fff1f0";
@@ -100,15 +100,15 @@ const GameCard = (props: GamePanelProps) => {
                         <tr>
                             <td colSpan={5} style={{ backgroundColor: getFooterBackgroundColor() }}>
                                 <section>
-                                    Tu apuesta: <code>{getResultDisplayName(props?.bet?.result)}</code>
+                                    Tu apuesta: <code>{getResultDisplayName(props?.bet?.gameResult)}</code>
                                     {props.game.state === 'NOT_STARTED' && <>
                                         <br />
                                         <button type="button" onClick={() => setOpenDialog(true)}>
                                             {props.bet && "Modificar Apuesta"}{!props.bet && "Hacer Apuesta"}
                                         </button>
                                     </>}
-                                    {props.game.state === 'DONE' && props?.bet?.result === props.game.result && <>✅</>}
-                                    {props.game.state === 'DONE' && props?.bet?.result !== props.game.result && <>❌</>}
+                                    {props.game.state === 'DONE' && props?.bet?.gameResult === props.game.result && <>✅</>}
+                                    {props.game.state === 'DONE' && props?.bet?.gameResult !== props.game.result && <>❌</>}
                                 </section>
                             </td>
                         </tr>

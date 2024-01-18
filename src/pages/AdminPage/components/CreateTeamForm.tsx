@@ -4,6 +4,7 @@ import { Team } from "../../../model/Team";
 
 const CreateTeamForm = () => {
     const [name, setName] = useState<string>("");
+    const [shortName, setShortName] = useState<string>("");
     const [imageUrl, setImageUrl] = useState<string>("");
 
     const { response, loading, error, sendData } = useAxios({
@@ -12,6 +13,7 @@ const CreateTeamForm = () => {
         url: `/team`,
         data: {
             "name": name,
+            "shortName": shortName,
             "logo": imageUrl
         }
     });
@@ -19,6 +21,10 @@ const CreateTeamForm = () => {
     const changeName = (e: React.FormEvent<HTMLInputElement>): void => {
         setName(e.currentTarget.value);
     };
+
+    const changeShortName = (e: React.FormEvent<HTMLInputElement>) => {
+        setShortName(e.currentTarget.value);
+    }
 
     const changeImageUrl = (e: React.FormEvent<HTMLInputElement>) => {
         setImageUrl(e.currentTarget.value);
@@ -42,8 +48,9 @@ const CreateTeamForm = () => {
             <h3>📝 Crear un equipo</h3>
             <p>Complet&aacute; el siguiente formulario para agregar un equipo nuevo a la base de datos.</p>
             <input type="text" placeholder="Nombre" value={name} onChange={changeName} />
+            <input type="text" placeholder="Nombre (corto)" value={shortName} onChange={changeShortName} />
             <input type="text" placeholder="Escudo" value={imageUrl} onChange={changeImageUrl} />
-            <button type="button" onClick={sendData} disabled={loading || name.length === 0 || imageUrl.length === 0}>
+            <button type="button" onClick={sendData} disabled={loading || name.length === 0 || shortName.length === 0 || imageUrl.length === 0}>
                 {loading && <i className="spin">⌛</i>}{!loading && "Crear equipo"}
             </button>
         </>

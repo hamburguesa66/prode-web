@@ -9,7 +9,7 @@ export interface GamePanelProps {
 }
 
 const BetForm = (props: GamePanelProps) => {
-    const [betResult, setBetResult] = useState<string>(props.bet?.result || "");
+    const [betResult, setBetResult] = useState<string>(props.bet?.gameResult || "");
 
     const changeBetResult = (e: React.FormEvent<HTMLSelectElement>): void => {
         setBetResult(e.currentTarget.value);
