@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Game } from "../../../model/Game";
 import { Bet } from "../../../model/Bet";
 import useAxios from "../../../hooks/useAxios";
+import toast from "react-hot-toast";
 
 export interface GamePanelProps {
     game: Game;
@@ -27,15 +28,14 @@ const BetForm = (props: GamePanelProps) => {
 
     useEffect(() => {
         if (response) {
-            alert(`Tu apuesta fue registrada correctamente`);
-            window.location.reload();
+            toast.success("Tu apuesta fue registrada correctamente");
+            setTimeout(() => window.location.reload(), 1000);
         }
     }, [response]);
 
     useEffect(() => {
         if (error) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(error);
+            toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
         }
     }, [error]);
 
@@ -51,13 +51,13 @@ const BetForm = (props: GamePanelProps) => {
             <p>
                 Tu resultado:
                 <select style={{ width: "100%" }} defaultValue={betResult} onChange={(e) => changeBetResult(e)}>
-                    {!props.bet && <option disabled={true} selected={true}>Seleccione una opci&oacute;n</option>}
+                    {!props.bet && <option value={""} disabled={true}>Seleccione una opci&oacute;n</option>}
                     <option value="HOME_TEAM_WON">Gana {props.game.homeTeam.name} (Local)</option>
                     <option value="AWAY_TEAM_WON">Gana {props.game.awayTeam.name} (Visitante)</option>
                     <option value="DRAW">Empate</option>
                 </select>
             </p>
-            <button type="button" disabled={betResult.length === 0 || loading} onClick={() => sendData()}>
+            <button type="button" disabled={betResult.length === 0 || loading } onClick={() => sendData()}>
                 {loading && <i className="spin">⌛</i>}{!loading && "Guardar"}
             </button>
         </>

@@ -3,6 +3,7 @@ import TeamSearchPanel from "./TeamSearchPanel";
 import CompetitionSearchPanel from "./CompetitionSearchPanel";
 import useAxios from "../../../hooks/useAxios";
 import { Game } from "../../../model/Game";
+import toast from "react-hot-toast";
 
 const CreateGameForm = () => {
     const [homeTeamId, setHomeTeamId] = useState<number>(0);
@@ -42,7 +43,7 @@ const CreateGameForm = () => {
     useEffect(() => {
         if (response?.data) {
             const game = response.data as Game;
-            alert(`El partido ${game.id} fue creado correctamente`);
+            toast.success(`El partido ${game.id} fue creado correctamente`);
             setHomeTeamId(0);
             setAwayTeamId(0);
             setCompetitionId(0);
@@ -52,8 +53,7 @@ const CreateGameForm = () => {
 
     useEffect(() => {
         if (error) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(error);
+            toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
         }
     }, [error]);
 

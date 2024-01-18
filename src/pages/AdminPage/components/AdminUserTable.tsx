@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import dayjs from "dayjs";
 import { act } from "react-dom/test-utils";
+import toast from "react-hot-toast";
 
 export interface User {
     uuid: string,
@@ -44,15 +45,14 @@ const AdminUserTable = () => {
 
     useEffect(() => {
         if (deleteResponse) {
-            alert(`El usuario ${action?.[1].uuid} fue eliminado`);
+            toast.success(`El usuario ${action?.[1].uuid} fue eliminado`);
             setAction(undefined);
         }
     }, [deleteResponse]);
 
     useEffect(() => {
         if (deleteError) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(deleteError);
+            toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
         }
     }, [deleteError]);
 
@@ -70,15 +70,14 @@ const AdminUserTable = () => {
 
     useEffect(() => {
         if (updateResponse) {
-            alert(`El usuario ${action?.[1].uuid} fue actualizado`);
+            toast.success(`El usuario ${action?.[1].uuid} fue actualizado`);
             setAction(undefined);
         }
     }, [updateResponse]);
 
     useEffect(() => {
         if (updateError) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(error);
+            toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
         }
     }, [updateError]);
 

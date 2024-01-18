@@ -19,7 +19,7 @@ const GameCard = (props: GamePanelProps) => {
             case "HOME_TEAM_WON":
                 return "Gana " + props.game.homeTeam.name + " (Local)";
             case "AWAY_TEAM_WON":
-                return "Gana" + props.game.awayTeam.name + " (Visitante)";
+                return "Gana " + props.game.awayTeam.name + " (Visitante)";
             case "DRAW":
                 return "Empate";
             default:

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
+import toast from "react-hot-toast";
 
 const SignUpForm = () => {
     const [username, setUsername] = useState<string>("");
@@ -33,7 +34,7 @@ const SignUpForm = () => {
 
     useEffect(() => {
         if (response) {
-            alert("✅ Registro completado correctamente.");
+            toast.success("Registro completado correctamente.");
             setUsername("");
             setPassword("");
             setRePassword("");
@@ -45,9 +46,9 @@ const SignUpForm = () => {
     useEffect(() => {
         if (error) {
             if (error.response?.status) {
-                alert("❗ Los datos ingresados no son válidos: "+error.response.data+".");
+                toast.error("Los datos ingresados no son válidos: "+error.response.data+".");
             } else {
-                alert("💀 El servidor no está disponible en este momento.");
+                toast.error("El servidor no está disponible en este momento.");
             }
         }
     }, [error]);

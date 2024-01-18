@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import { Team } from "../../../model/Team";
+import toast from "react-hot-toast";
 
 const CreateTeamForm = () => {
     const [name, setName] = useState<string>("");
@@ -33,13 +34,16 @@ const CreateTeamForm = () => {
     useEffect(() => {
         if (response?.data) {
             const data = response.data as Team;
-            alert("El equipo "+data.id+" fue creado correctamente.");
+            toast.success("El equipo "+data.id+" fue creado correctamente.");
+            setName("");
+            setShortName("");
+            setImageUrl("");
         }
     }, [response]);
 
     useEffect(() => {
         if (error) {
-            alert("❗ Ha ocurrido un problema: "+error.response?.data);
+            toast.error("❗ Ha ocurrido un problema: "+error.response?.data);
         }
     }, [error]);
 

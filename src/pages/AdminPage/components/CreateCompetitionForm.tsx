@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import { Competition } from "../../../model/Competition";
+import toast from "react-hot-toast";
 
 const CreateCompetitionForm = () => {
     const [name, setName] = useState<string>("");
@@ -33,13 +34,16 @@ const CreateCompetitionForm = () => {
     useEffect(() => {
         if (response?.data) {
             const data = response.data as Competition;
-            alert("La competición "+data.id+" fue creada correctamente.");
+            toast.success("La competición "+data.id+" fue creada correctamente.");
+            setName("");
+            setHashtag("");
+            setImageUrl("");
         }
     }, [response]);
 
     useEffect(() => {
         if (error) {
-            alert("❗ Ha ocurrido un problema: "+error.response?.data);
+            toast.error("❗ Ha ocurrido un problema: "+error.response?.data);
         }
     }, [error]);
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import useAxios from "../hooks/useAxios";
 import { LoginResponse } from "../model/LoginResponse";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const { setPrincipal } = useUserContext();
@@ -39,9 +40,9 @@ const LoginForm = () => {
   useEffect(() => {
     if (error) {
       if(error.response?.status && (error.response.status === 400 || error.response.status === 404)) {
-        alert("❗ Los datos ingresados no son válidos.");
+        toast.error("Los datos ingresados no son válidos");
       } else {
-        alert("💀 El servidor no está disponible en este momento.");
+        toast.error("El servidor no está disponible en este momento.");
       }
     }
   }, [error]);

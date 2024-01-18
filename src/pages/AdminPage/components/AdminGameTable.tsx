@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Game } from "../../../model/Game";
 import useAxios from "../../../hooks/useAxios";
 import dayjs from "dayjs";
+import toast from "react-hot-toast";
 
 const AdminGameTable = () => {
     const [games, setGames] = useState<Game[]>([]);
@@ -50,15 +51,14 @@ const AdminGameTable = () => {
 
     useEffect(() => {
         if (deleteResponse) {
-            alert(`El partido ${action?.[1].id} fue eliminado`);
+            toast.success(`El partido ${action?.[1].id} fue eliminado`);
             setAction(undefined);
         }
     }, [deleteResponse]);
 
     useEffect(() => {
         if (deleteError) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(deleteError);
+            toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
         }
     }, [deleteError]);
 
@@ -100,15 +100,14 @@ const AdminGameTable = () => {
 
     useEffect(() => {
         if (updateResponse) {
-            alert(`El partido ${action?.[1].id} fue actualizado`);
+            toast.success(`El partido ${action?.[1].id} fue actualizado`);
             setAction(undefined);
         }
     }, [updateResponse]);
 
     useEffect(() => {
         if (updateError) {
-            alert(`Harry, ha ocurrido un problema. Mirá la consola.`);
-            console.log(updateError);
+            toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
         }
     }, [updateError]);
 
