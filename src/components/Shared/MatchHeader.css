@@ -1,0 +1,22 @@
+.match-header-container {
+    border-radius: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    background-color: #fafafa;
+}
+
+.match-header-td-left {
+    text-align: left;
+}
+
+.match-header-td-centered {
+    text-align: center;
+}
+
+.match-header-td-right {
+    text-align: right;
+}
+
+.match-header-v-align-middle {
+    vertical-align: middle;
+}

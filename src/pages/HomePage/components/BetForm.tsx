@@ -3,6 +3,7 @@ import { Game } from "../../../model/Game";
 import { Bet } from "../../../model/Bet";
 import useAxios from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
+import MatchHeader from "../../../components/Shared/MatchHeader";
 
 export interface GamePanelProps {
     game: Game;
@@ -42,6 +43,7 @@ const BetForm = (props: GamePanelProps) => {
     return (
         <>
             <h3>🎲 Hacer una apuesta</h3>
+            <MatchHeader game={props.game} />
             <p>
                 Tipo de apuesta:
                 <select style={{ width: "100%" }}>
