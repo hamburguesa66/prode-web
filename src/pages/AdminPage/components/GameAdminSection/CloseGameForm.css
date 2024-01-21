@@ -1,0 +1,11 @@
+.close-game-form-number-input {
+    width: 95%;
+}
+
+.close-game-form-alert {
+    border-radius: 10px;
+    padding: 1rem;
+    border-bottom: 1px solid #fa8c16;
+    border-right: 1px solid #fa8c16;
+    background-color: #ffe7ba;
+}

@@ -1,0 +1,15 @@
+.btn-small {
+    padding: 5px;
+}
+
+.condensed-game-table-td-centered {
+    text-align: center;
+}
+
+.condensed-game-table-td {
+    vertical-align: middle;
+}
+
+.condensed-game-table-tr-important {
+    background-color: #fff1f0;
+}

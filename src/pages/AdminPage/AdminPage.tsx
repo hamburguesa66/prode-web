@@ -3,9 +3,9 @@ import CreateGameForm from "./components/CreateGameForm";
 import { useUserContext } from "../../context/UserContext";
 import { Navigate } from "react-router-dom";
 import AdminUserTable from "./components/AdminUserTable";
-import AdminGameTable from "./components/AdminGameTable";
 import CreateTeamForm from "./components/CreateTeamForm";
 import CreateCompetitionForm from "./components/CreateCompetitionForm";
+import GameAdminSection from "./components/GameAdminSection/GameAdminSection";
 
 enum AdminPageActions {
     Games = "Partidos que requieren atención",
@@ -36,7 +36,7 @@ const AdminPage = () => {
                             {Object.values(AdminPageActions).map(it => <option value={it}>{it}</option>)}
                         </select>
                     </p>
-                    {action === AdminPageActions.Games && <AdminGameTable />}
+                    {action === AdminPageActions.Games && <GameAdminSection />}
                     {action === AdminPageActions.CreateTeam && <CreateTeamForm />}
                     {action === AdminPageActions.CreateCompetition && <CreateCompetitionForm />}
                     {action === AdminPageActions.CreateGame && <CreateGameForm />}
