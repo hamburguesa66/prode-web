@@ -1,0 +1,38 @@
+.game-card-container {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;;
+}
+
+.game-card-container th {
+    text-align: center;
+    background-color: #efefef;
+}
+
+.game-card-container th:first-child, th:last-child, tfoot tr {
+    border-radius: 10px;
+}
+
+.game-card-container table {
+    margin-bottom: 0px;
+}
+
+.game-card-container td {
+    text-align: center;
+}
+
+.game-card-container tbody tr {
+    background-color: #fafafa;
+}
+
+.loser-team {
+    filter: grayscale(100%);
+}
+
+#bet-dialog {
+    position: relative;
+    z-index: 10000000;
+}

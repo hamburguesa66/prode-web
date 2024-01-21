@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useUserContext } from "../context/UserContext";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import useAxios from "../hooks/useAxios";
-import GameCard from "../components/Shared/GameCard";
-import { GameWithBet } from "../model/GameWithBet";
+import useAxios from "../../../hooks/useAxios";
+import { GameWithBet } from "../../../model/GameWithBet";
+import { useUserContext } from "../../../context/UserContext";
+import GameCard from "./GameCard";
 
-const Home = () => {
+const HomePage = () => {
     const { principal } = useUserContext();
 
     const [games, setGames] = useState<GameWithBet[]>([]);
 
-    const { response, loading, error } = useAxios({
+    const { response, loading } = useAxios({
         lazy: false,
         method: "GET",
         url: `/my`,
@@ -39,17 +39,7 @@ const Home = () => {
                         </>
                     ) : (
                         <>
-                            {error ? (
-                                <>
-                                    <pre>
-                                        <code>❗ Oops, ha ocurrido un problema</code>
-                                    </pre>I
-                                </>
-                            ) : (
-                                <>
-                                    {games.map(it => <GameCard game={it.game} bet={it.bet} />)}
-                                </>
-                            )}
+                            {games.map(it => <GameCard game={it.game} bet={it.bet} />)}
                         </>
                     )}
 
@@ -59,4 +49,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default HomePage;
