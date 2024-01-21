@@ -10,7 +10,7 @@ const RankingPage = () => {
 
     const [scores, setScores] = useState<UserScore[]>([]);
 
-    const { response, loading, error } = useAxios({
+    const { response, loading } = useAxios({
         lazy: false,
         method: "GET",
         url: `/statistics/ranking`,
@@ -19,8 +19,14 @@ const RankingPage = () => {
 
     useEffect(() => {
         if (response?.data) {
-            const data = response.data as UserScore[]; 
-            setScores(data.sort((s1,s2) => s2.points - s1.points));
+            const data = response.data as UserScore[];
+            setScores(data.sort((s1, s2) => {
+                if (s2.points === s1.points) {
+                    return s2.accuracy - s1.accuracy
+                } else {
+                    return s2.points - s1.points
+                }
+            }));
         }
     }, [response]);
 

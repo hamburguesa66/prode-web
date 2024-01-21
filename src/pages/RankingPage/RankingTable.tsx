@@ -51,7 +51,7 @@ const RankingTable = (props: RankingTableProps) => {
                             <td>{it.username}</td>
                             <td>{it.points}</td>
                             <td>{it.won}/{it.played}</td>
-                            <td>{it.accuracy} %</td>
+                            <td>{it.accuracy.toFixed(0)} %</td>
                         </tr>
                     )
                 )}

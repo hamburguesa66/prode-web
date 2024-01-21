@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import './GameCard.css';
 import { Bet } from "../../model/Bet";
 import { Game } from "../../model/Game";
@@ -67,7 +67,7 @@ const GameCard = (props: GamePanelProps) => {
                                     alt={props.game.homeTeam.name}
                                     title={props.game.homeTeam.name} />
                                 <br />
-                                <code>{props.game.homeTeamScore || "-"}</code>
+                                <code>{props.game.result ? props.game.homeTeamScore  : "-"}</code>
                             </td>
                             <td>
                                 <img
@@ -75,7 +75,7 @@ const GameCard = (props: GamePanelProps) => {
                                     alt={props.game.awayTeam.name}
                                     title={props.game.awayTeam.name} />
                                 <br />
-                                <code>{props.game.awayTeamScore || "-"}</code>
+                                <code>{props.game.result ? props.game.awayTeamScore : "-"}</code>
                             </td>
                             <td>
                                 <img
