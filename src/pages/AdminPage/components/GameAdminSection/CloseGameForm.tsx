@@ -93,7 +93,7 @@ const CloseGameForm = (props: CloseGameFormProps) => {
 
     return (
         <>
-            <h3>🎲 Cerrar un partido</h3>
+            <h3>📝 Cerrar un partido</h3>
             <MatchHeader game={props.game} />
             <p>
                 Goles {props.game.homeTeam.name} (Local):

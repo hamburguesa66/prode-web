@@ -10,6 +10,7 @@ import { Team } from "../../../model/Team";
 export interface GamePanelProps {
     game: Game;
     bet: Bet | undefined;
+    onBetChange: (it: Game, bet: Bet) => void;
 }
 
 const GameCard = (props: GamePanelProps) => {
@@ -112,11 +113,19 @@ const GameCard = (props: GamePanelProps) => {
         return undefined;
     }
 
+    const handleBetChange = (game: Game, bet: Bet) => {
+        props.onBetChange(game,bet);
+        setOpenDialog(false);
+    };
+
     return (
         <>
             <Modal open={openDialog} onClose={() => setOpenDialog(false)} center>
-                <BetForm
-                    game={props.game} bet={props.bet} />
+                <BetForm 
+                    game={props.game} 
+                    bet={props.bet}
+                    onSuccess={handleBetChange}
+                    onError={() => setOpenDialog(false)} />
             </Modal>
             <div className="game-card-container">
                 <table>

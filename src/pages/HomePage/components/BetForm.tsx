@@ -8,6 +8,8 @@ import MatchHeader from "../../../components/Shared/MatchHeader";
 export interface GamePanelProps {
     game: Game;
     bet: Bet | undefined;
+    onSuccess: (it: Game, bet: Bet) => void;
+    onError: () => void;
 }
 
 const BetForm = (props: GamePanelProps) => {
@@ -30,13 +32,14 @@ const BetForm = (props: GamePanelProps) => {
     useEffect(() => {
         if (response) {
             toast.success("Tu apuesta fue registrada correctamente");
-            setTimeout(() => window.location.reload(), 1000);
+            props.onSuccess(props.game, response.data as Bet);
         }
     }, [response]);
 
     useEffect(() => {
         if (error) {
             toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
+            props.onError();
         }
     }, [error]);
 
