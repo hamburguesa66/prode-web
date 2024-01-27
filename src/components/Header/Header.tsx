@@ -29,7 +29,7 @@ const Header = () => {
                         <ul>
                             <li><a href="" onClick={(e) => goTo(e, "/home")}>🏠 Home</a></li>
                             <li><a href="" onClick={(e) => goTo(e, "/ranking")}>🏆 Ranking</a></li>
-                            <li><a href="" onClick={(e) => goTo(e, "/profile")}>👤 Mi usuario</a></li>
+                            <li><a href="" onClick={(e) => goTo(e, "/archive")}>🗃️ Archivo</a></li>
                             {
                                 principal.isAdmin && <li><a href="" onClick={(e) => goTo(e, "/admin")}>🛠️ Administraci&oacute;n</a></li>
                             }
