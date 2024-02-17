@@ -1,0 +1,26 @@
+.alert {
+    border-radius: 10px;
+    padding: 1rem;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    background-color: #efefef;
+}
+
+.alert-pikachu {
+    border-bottom: 1px solid ;
+    border-color: #fa8c16;
+    background-color: #ffe7ba;
+}
+
+.alert-pikachu hr {
+    border-color: #ffccc7;
+}
+
+.alert-diablo {
+    border-color: #ffccc7;
+    background-color: #fff1f0;
+}
+
+.alert-diablo hr {
+    border-color: #ffccc7;
+}

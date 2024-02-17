@@ -3,6 +3,8 @@ import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 import { Navigate } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
+import Alert from "../../components/Shared/Alert/Alert";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const StartPage = () => {
@@ -19,16 +21,26 @@ const StartPage = () => {
         <>
             {loading ? (
                 <>
-                    <pre>
-                        <code><i className="spin">⌛</i> Verificando disponibilidad del servidor ...</code>
-                    </pre>
+                    <Alert type="default">
+                        <FontAwesomeIcon icon="spinner" spin /> Verificando disponibilidad del servidor.
+                        <hr />
+                        <p>
+                            Esto puede tardar varios minutos, por favor, sea paciente y espere.
+                        </p>
+                    </Alert>
                 </>
             ) : (<>
                 {error ? (
                     <>
-                        <pre>
-                            <code>☠️ El servidor no est&aacute; disponible. Vuelva a intentar en otro momento.</code>
-                        </pre>
+                        <Alert type="diablo">
+                            <FontAwesomeIcon icon="triangle-exclamation" /> <strong>Harry, tenemos un problema!</strong>
+                            <hr/>
+                            <p>
+                                El servidor no esta disponible. Intente en otro momento.
+                                <br/>
+                                <small>Si el problema persiste, notifique al administrador.</small>
+                            </p>
+                        </Alert>
                     </>
                 ) : (
                     <>
