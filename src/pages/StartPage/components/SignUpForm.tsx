@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useAxios from "../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
+import Modal from "react-responsive-modal";
+import Ruleset from "../../../components/Shared/Ruleset";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ClickableSpan from "../../../components/Shared/ClickableSpan/ClickableSpan";
+import AwesomeButton from "../../../components/Shared/AwesomeButton/AwesomeButton";
 
 const SignUpForm = () => {
     const [username, setUsername] = useState<string>("");
@@ -8,6 +13,7 @@ const SignUpForm = () => {
     const [repassword, setRePassword] = useState<string>("");
     const [terms, setTerms] = useState<boolean>(false);
     const [conditions, setConditions] = useState<boolean>(false);
+    const [showRuleset, setShowRuleset] = useState<boolean>(false);
 
     const { response, loading, error, sendData } = useAxios({
         lazy: true,
@@ -46,7 +52,7 @@ const SignUpForm = () => {
     useEffect(() => {
         if (error) {
             if (error.response?.status) {
-                toast.error("Los datos ingresados no son válidos: "+error.response.data+".");
+                toast.error("Los datos ingresados no son válidos: " + error.response.data + ".");
             } else {
                 toast.error("El servidor no está disponible en este momento.");
             }
@@ -55,10 +61,18 @@ const SignUpForm = () => {
 
     return (
         <>
-            <h3>📝 Unirse</h3>
+            <Modal open={showRuleset} onClose={() => setShowRuleset(false)} center>
+                <h4><FontAwesomeIcon icon="book" /> Reglamento</h4> <Ruleset />
+            </Modal>
+            <h3><FontAwesomeIcon icon="user-plus" flip="horizontal" /> Unirse</h3>
             <p>
                 Complet&aacute; los campos y registrate.
                 Un vez registrado, vas a tener que <strong>esperar por la aprobaci&oacute;n de un admin</strong> antes de entrar.
+            </p>
+            <p>
+                <ClickableSpan onClick={() => setShowRuleset(true)}>
+                    <FontAwesomeIcon icon="book" /> Ver reglamento
+                </ClickableSpan>
             </p>
             <p>
                 <input type="text" placeholder="Apodo" value={username} onChange={changeUsername} maxLength={16} />
@@ -74,16 +88,16 @@ const SignUpForm = () => {
             <p>
                 <label>
                     <input type="checkbox" checked={terms} onChange={() => setTerms(!terms)} />
-                    Acepto las reglas del administrador y lo acepto como el amo y se&ntilde;or de esta p&aacute;gina
+                    Acepto el reglamento del juego y acepto al administrador como el amo y se&ntilde;or de esta p&aacute;gina
                 </label>
                 <label>
                     <input type="checkbox" checked={conditions} onChange={() => setConditions(!conditions)} />
                     Prometo no llorar si no me aceptan, si me bloquean o si pierdo
                 </label>
             </p>
-            <button type="button" onClick={sendData} disabled={disableButton}>
-                {loading && <i className="spin">⌛</i>}{!loading && "Registrarse"}
-            </button>
+            <AwesomeButton onClick={sendData} loading={loading} disabled={disableButton}>
+                Registrase
+            </AwesomeButton>
         </>
     )
 }

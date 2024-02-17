@@ -1,9 +1,8 @@
-import React from "react";
-import { useUserContext } from "../context/UserContext";
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
+import { useUserContext } from "../../context/UserContext";
+import LoginForm from "./components/LoginForm";
+import SignUpForm from "./components/SignUpForm";
 import { Navigate } from "react-router-dom";
-import useAxios from "../hooks/useAxios";
+import useAxios from "../../hooks/useAxios";
 
 
 const StartPage = () => {

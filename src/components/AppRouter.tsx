@@ -1,8 +1,7 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
 import AdminPage from "../pages/AdminPage/AdminPage";
-import StartPage from "../pages/StartPage";
+import StartPage from "../pages/StartPage/StartPage";
 import RankingPage from "../pages/RankingPage/RankingPage";
 import { Toaster } from "react-hot-toast";
 import HomePage from "../pages/HomePage/components/HomePage";

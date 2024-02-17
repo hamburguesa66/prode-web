@@ -3,31 +3,22 @@ import './Header.css';
 import { Principal, useUserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ProdeLogo from "../Shared/ProdeLogo";
+import ClickableSpan from "../Shared/ClickableSpan/ClickableSpan";
 
 const Header = () => {
     const { principal, setPrincipal } = useUserContext();
     const navigate = useNavigate();
 
-    const logout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        e.preventDefault();
+    const logout = () => {
         setPrincipal(new Principal());
         navigate("/");
     }
 
-    const goTo = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, to: string) => {
-        e.preventDefault();
-        navigate(to);
-    }
-
     return (
-        <header style={{ borderBottom: "1px solid #dbdbdb" }}>
+        <header>
             <h1>
-                <FontAwesomeIcon icon="futbol" style={{ marginRight: '0.5rem' }} />
-                <FontAwesomeIcon icon="p" style={{ marginRight: '0.1rem' }} />
-                <FontAwesomeIcon icon="r" style={{ marginRight: '0.1rem' }} />
-                <FontAwesomeIcon icon="o" style={{ marginRight: '0.1rem' }} />
-                <FontAwesomeIcon icon="d" style={{ marginRight: '0.1rem' }} />
-                <FontAwesomeIcon icon="e" />
+                <ProdeLogo />
             </h1>
             {
                 principal.isAuthenticated &&
@@ -35,13 +26,34 @@ const Header = () => {
                     <p>Hola, {principal.username}</p>
                     <nav>
                         <ul>
-                            <li><a href="" onClick={(e) => goTo(e, "/home")}>🏠 Home</a></li>
-                            <li><a href="" onClick={(e) => goTo(e, "/ranking")}>🏆 Ranking</a></li>
-                            <li><a href="" onClick={(e) => goTo(e, "/archive")}>🗃️ Archivo</a></li>
+                            <li>
+                                <ClickableSpan onClick={() => navigate("/home")}>
+                                    <FontAwesomeIcon icon="house-flag" /> Home
+                                </ClickableSpan>
+                            </li>
+                            <li>
+                                <ClickableSpan onClick={() => navigate("/ranking")}>
+                                    <FontAwesomeIcon icon="ranking-star" /> Ranking
+                                </ClickableSpan>
+                            </li>
+                            <li>
+                                <ClickableSpan onClick={() => navigate("/archive")}>
+                                    <FontAwesomeIcon icon="box-archive" /> Archivo
+                                </ClickableSpan>
+                            </li>
                             {
-                                principal.isAdmin && <li><a href="" onClick={(e) => goTo(e, "/admin")}>🛠️ Administraci&oacute;n</a></li>
+                                principal.isAdmin &&
+                                <li>
+                                    <ClickableSpan onClick={() => navigate("/admin")}>
+                                        <FontAwesomeIcon icon="screwdriver-wrench" /> Administraci&oacute;n
+                                    </ClickableSpan>
+                                </li>
                             }
-                            <li><a href="" onClick={(e) => logout(e)}>🚪 Salir</a></li>
+                            <li>
+                                <ClickableSpan onClick={() => logout()}>
+                                    <FontAwesomeIcon icon="door-closed" /> Salir
+                                </ClickableSpan>
+                            </li>
                         </ul>
                     </nav>
                 </>

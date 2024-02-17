@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useUserContext } from "../context/UserContext";
-import useAxios from "../hooks/useAxios";
-import { LoginResponse } from "../model/LoginResponse";
+import { useUserContext } from "../../../context/UserContext";
+import useAxios from "../../../hooks/useAxios";
+import { LoginResponse } from "../../../model/LoginResponse";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AwesomeButton from "../../../components/Shared/AwesomeButton/AwesomeButton";
 
 const LoginForm = () => {
   const { setPrincipal } = useUserContext();
@@ -24,6 +26,8 @@ const LoginForm = () => {
   const changePassword = (e: React.FormEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   }
+
+  const disableButton = loading || username.length < 8 || password.length < 8;
 
   useEffect(() => {
     if (response?.data) {
@@ -49,13 +53,13 @@ const LoginForm = () => {
 
   return (
     <>
-      <h3>🔑 Entrar</h3>
+      <h3><FontAwesomeIcon icon="arrow-right-to-bracket" /> Entrar</h3>
       <p>Ingres&aacute; tu apodo y contrase&ntilde;a</p>
       <input type="text" placeholder="Apodo" value={username} onChange={changeUsername} maxLength={16} />
       <input type="password" placeholder="Contrase&ntilde;a" value={password} onChange={changePassword} maxLength={16} />
-      <button type="button" onClick={sendData} disabled={loading || username.length < 8 || password.length < 8}>
-        {loading && <i className="spin">⌛</i>}{!loading && "Entrar"}
-      </button>
+      <AwesomeButton onClick={sendData} loading={loading} disabled={disableButton}>
+        Entrar
+      </AwesomeButton>
     </>
   )
 }

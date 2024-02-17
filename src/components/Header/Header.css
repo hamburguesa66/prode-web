@@ -7,3 +7,7 @@ nav li {
     display: inline-block;
     margin-right: 10px;
 }
+
+header {
+    border-bottom: 1px solid #dbdbdb;
+}

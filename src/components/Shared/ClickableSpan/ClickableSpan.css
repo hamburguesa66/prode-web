@@ -1,0 +1,8 @@
+.clickable-span {
+    cursor:pointer;
+    color:#2489d7;
+}
+
+.clickable-span:hover {
+    text-decoration:underline;
+}
