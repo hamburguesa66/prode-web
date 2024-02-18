@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { Game } from "../../../../model/Game";
 import './CondensedGameTable.css';
+import VersusIcon from "../../../../components/Shared/VersusIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface CondensedGameTableProps {
     games: Game[],
@@ -14,7 +16,7 @@ const CondensedGameTable = (props: CondensedGameTableProps) => {
     const getSummary = (it: Game) => {
         return <>
             <img src={it.homeTeam.logo} alt={it.homeTeam.name} width={24} height={24} />
-            <small>&nbsp;🆚&nbsp;</small>
+            &nbsp;
             <img src={it.awayTeam.logo} alt={it.awayTeam.name} width={24} height={24} />
         </>
     }
@@ -48,40 +50,42 @@ const CondensedGameTable = (props: CondensedGameTableProps) => {
     }
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th><abbr title="Competencia">Com.</abbr></th>
-                    <th><abbr title="Partido">Par.</abbr></th>
-                    <th>Fecha</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.loading ? (
+        <div className="condensed-game-table-container">
+            <table style={{ marginBottom: "0px" }}>
+                <thead>
                     <tr>
-                        <td colSpan={5} className="condensed-game-table-td-centered">
-                            <i className="spin">⌛</i>
-                        </td></tr>
-                ) : (
-                    props.games.map((it,idx) =>
-                        <tr key={idx} className={ it.state === 'PENDING_RESULT' ? "condensed-game-table-tr-important" : undefined }>
-                            <td className="condensed-game-table-td">
-                                <img src={it.competition.logo} alt={it.competition.name} width={24} height={24} />
-                            </td>
-                            <td className="condensed-game-table-td">{getSummary(it)}</td>
-                            <td className="condensed-game-table-td">{dayjs(it.date).format("DD/MM HH:mm")}</td>
-                            <td className="condensed-game-table-td">{getState(it)}</td>
-                            <td className="condensed-game-table-td">
-                                {it.state === 'NOT_STARTED' && <button onClick={() => props.onDelete(it)} className="btn-small">🗑️</button>}
-                                {it.state === 'PENDING_RESULT' && <button onClick={() => props.onClose(it)} className="btn-small">📝</button>}
-                            </td>
-                        </tr>
-                    )
-                )}
-            </tbody>
-        </table>
+                        <th><FontAwesomeIcon icon="trophy" /></th>
+                        <th><FontAwesomeIcon icon="gamepad" /></th>
+                        <th><FontAwesomeIcon icon="calendar" /></th>
+                        <th><FontAwesomeIcon icon="signal" /></th>
+                        <th><FontAwesomeIcon icon="wand-magic-sparkles" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.loading ? (
+                        <tr>
+                            <td colSpan={5} className="condensed-game-table-td-centered">
+                                <FontAwesomeIcon icon="spinner" spin />
+                            </td></tr>
+                    ) : (
+                        props.games.map((it, idx) =>
+                            <tr key={idx}>
+                                <td className="condensed-game-table-td">
+                                    <img src={it.competition.logo} alt={it.competition.name} width={24} height={24} />
+                                </td>
+                                <td className="condensed-game-table-td">{getSummary(it)}</td>
+                                <td className="condensed-game-table-td">{dayjs(it.date).format("DD/MM HH:mm")}</td>
+                                <td className="condensed-game-table-td">{getState(it)}</td>
+                                <td className="condensed-game-table-td">
+                                    {it.state === 'NOT_STARTED' && <button onClick={() => props.onDelete(it)} className="btn-small"><FontAwesomeIcon icon="trash-can" /></button>}
+                                    {it.state === 'PENDING_RESULT' && <button onClick={() => props.onClose(it)} className="btn-small"><FontAwesomeIcon icon="flag-checkered" /></button>}
+                                </td>
+                            </tr>
+                        )
+                    )}
+                </tbody>
+            </table>
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface AwesomeButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode,
-    loading: boolean;
+    loading?: boolean;
 }
 
 const AwesomeButton = (props: AwesomeButtonProps) => {

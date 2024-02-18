@@ -5,6 +5,7 @@ import CondensedGameTable from "./CondensedGameTable";
 import Modal from "react-responsive-modal";
 import DeleteGameForm from "./DeleteGameForm";
 import CloseGameForm from "./CloseGameForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const GameAdminSection = () => {
     const [games, setGames] = useState<Game[]>([]);
@@ -51,8 +52,8 @@ const GameAdminSection = () => {
     }
     return (
         <>
-            <h3>🚨 Partidos que requieren atenci&oacute;n</h3>
-            <p>Partidos pendientes de carga de resultado o pendientes de c&oacute;mputo (para el ranking)</p>
+            <h3><FontAwesomeIcon icon="bell" /> Partidos que requieren atenci&oacute;n</h3>
+            <p>Partidos pendientes de carga de resultado o pendientes de c&oacute;mputo (para el ranking).</p>
             {selectedGame && <>
                 <Modal
                     open={isDeleteFormOpen}

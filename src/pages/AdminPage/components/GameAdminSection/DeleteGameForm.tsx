@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import MatchHeader from "../../../../components/Shared/MatchHeader";
 import { Game } from "../../../../model/Game";
 import useAxios from "../../../../hooks/useAxios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AwesomeButton from "../../../../components/Shared/AwesomeButton/AwesomeButton";
 
 export interface DeleteGameFormProps {
     game: Game;
@@ -35,17 +37,17 @@ const DeleteGameForm = (props: DeleteGameFormProps) => {
 
     return (
         <>
-            <h3>🎲 Eliminar un partido</h3>
+            <h3><FontAwesomeIcon icon="trash-can" /> Eliminar un partido</h3>
             <MatchHeader game={props.game} />
             <p>
-                Confirme la acci&oacute;n. No hay vuelta atr&aacute;s ...
+                Por favor, confirme la acci&oacute;n.
             </p>
-            <button type="button" disabled={loading } onClick={sendData}>
-                {loading && <i className="spin">⌛</i>}{!loading && "Eliminar"}
-            </button>
-            <button type="button" disabled={loading} onClick={props.onCancel}>
+            <AwesomeButton disabled={loading} loading={loading} onClick={sendData}>
+                Eliminar
+            </AwesomeButton>
+            <AwesomeButton disabled={loading} onClick={props.onCancel} >
                 Cancelar
-            </button>
+            </AwesomeButton>
         </>
     )
 }

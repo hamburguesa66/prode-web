@@ -4,6 +4,9 @@ import './CloseGameForm.css';
 import MatchHeader from "../../../../components/Shared/MatchHeader";
 import { Game } from "../../../../model/Game";
 import useAxios from "../../../../hooks/useAxios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Alert from "../../../../components/Shared/Alert/Alert";
+import AwesomeButton from "../../../../components/Shared/AwesomeButton/AwesomeButton";
 
 export interface CloseGameFormProps {
     game: Game;
@@ -93,7 +96,7 @@ const CloseGameForm = (props: CloseGameFormProps) => {
 
     return (
         <>
-            <h3>📝 Cerrar un partido</h3>
+            <h3><FontAwesomeIcon icon="flag-checkered" /> Cerrar un partido</h3>
             <MatchHeader game={props.game} />
             <p>
                 Goles {props.game.homeTeam.name} (Local):
@@ -101,15 +104,15 @@ const CloseGameForm = (props: CloseGameFormProps) => {
                 Goles {props.game.awayTeam.name} (Visitante):
                 <input className="close-game-form-number-input" type="number" value={awayTeamGoals} onChange={(e) => changeAwayTeamGoals(e)} />
             </p>
-            <p className="close-game-form-alert">
+            <Alert type="pikachu">
                 <strong>Resultado:</strong> {prettyPrintResult()}
-            </p>
-            <button type="button" disabled={disableSubmitButton} onClick={sendData}>
-                {loading && <i className="spin">⌛</i>}{!loading && "Enviar"}
-            </button>
-            <button type="button" disabled={loading} onClick={props.onCancel}>
+            </Alert>
+            <AwesomeButton loading={loading} disabled={disableSubmitButton} onClick={sendData}>
+                Enviar
+            </AwesomeButton>
+            <AwesomeButton disabled={loading} onClick={props.onCancel}>
                 Cancelar
-            </button>
+            </AwesomeButton>
         </>
     )
 }
