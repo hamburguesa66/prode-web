@@ -32,6 +32,11 @@ const Header = () => {
                                 </ClickableSpan>
                             </li>
                             <li>
+                                <ClickableSpan onClick={() => navigate("/rules")}>
+                                    <FontAwesomeIcon icon="book" /> Reglamento
+                                </ClickableSpan>
+                            </li>
+                            <li>
                                 <ClickableSpan onClick={() => navigate("/ranking")}>
                                     <FontAwesomeIcon icon="ranking-star" /> Ranking
                                 </ClickableSpan>

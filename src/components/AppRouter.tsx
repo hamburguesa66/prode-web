@@ -6,6 +6,7 @@ import RankingPage from "../pages/RankingPage/RankingPage";
 import { Toaster } from "react-hot-toast";
 import HomePage from "../pages/HomePage/components/HomePage";
 import ArchivePage from "../pages/ArchivePage/ArchivePage";
+import RulesetPage from "../pages/RulesetPage/RulesetPage";
 
 export const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ export const AppRouter = () => {
         <Route path="/ranking" Component={RankingPage} />
         <Route path="/archive" Component={ArchivePage} />
         <Route path="/admin" Component={AdminPage} />
+        <Route path="/rules" Component={RulesetPage} />
       </Routes>
     </BrowserRouter>
   );
