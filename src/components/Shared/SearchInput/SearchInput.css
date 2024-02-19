@@ -1,0 +1,27 @@
+.search-input-container {
+    width: 100%;
+}
+
+.search-input-container div:first-child {
+    display: inline-block;
+    width: 60%;
+}
+
+.search-input-container div:first-child input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.search-input-container div:last-child {
+    display: inline-block;
+    width: 40%;
+}
+
+.search-input-container div:last-child button {
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0; 
+    width: 100%; 
+    margin: 0;
+}

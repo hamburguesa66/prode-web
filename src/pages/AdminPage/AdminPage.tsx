@@ -7,6 +7,7 @@ import CreateTeamForm from "./components/CreateTeamForm";
 import CreateCompetitionForm from "./components/CreateCompetitionForm";
 import GameAdminSection from "./components/GameAdminSection/GameAdminSection";
 import Jumbotron from "../../components/Shared/Jumbotron/Jumbotron";
+import Alert from "../../components/Shared/Alert/Alert";
 
 enum AdminPageActions {
     Games = "Partidos que requieren atención",
@@ -30,12 +31,14 @@ const AdminPage = () => {
                 <Navigate to="/" replace={true} />
             ) : (
                 <>
+                    <Alert type="default">
                     <Jumbotron title="Administración" icon="screwdriver-wrench">
                         Selecciona una acci&oacute;n:
                         <select defaultValue={action} onChange={(e) => changeAction(e)}>
                             {Object.values(AdminPageActions).map(it => <option value={it}>{it}</option>)}
                         </select>
                     </Jumbotron>
+                    </Alert>
                     {action === AdminPageActions.Games && <GameAdminSection />}
                     {action === AdminPageActions.CreateTeam && <CreateTeamForm />}
                     {action === AdminPageActions.CreateCompetition && <CreateCompetitionForm />}

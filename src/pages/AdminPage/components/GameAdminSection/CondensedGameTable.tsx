@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { Game } from "../../../../model/Game";
 import './CondensedGameTable.css';
-import VersusIcon from "../../../../components/Shared/VersusIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface CondensedGameTableProps {

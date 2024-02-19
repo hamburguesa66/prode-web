@@ -1,0 +1,93 @@
+
+/* Common */
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-middle {
+    vertical-align: middle;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+/* Common:Tables */
+
+.basic-table-container {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;;
+}
+
+.basic-table-container th {
+    background-color: #efefef;
+}
+
+.basic-table-container th:first-child, th:last-child, tfoot tr {
+    border-radius: 10px;
+}
+
+.basic-table-container table {
+    margin-bottom: 0px;
+}
+
+.basic-table-container tbody tr {
+    background-color: #fafafa;
+}
+
+/* Model Selector Table Styles */
+
+.selector-table-container {
+    border-radius: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    background-color: #fafafa;
+}
+
+.selector-table-container table {
+    margin-bottom: 0px;
+}
+
+.selector-table-container th {
+    background-color: #efefef;
+}
+
+.selector-table-container th:first-child {
+    border-radius: 0px;
+    border-top-left-radius: 10px;
+}
+
+.selector-table-container th:last-child {
+    border-radius: 0px;
+    border-top-right-radius: 10px;
+}
+
+.selector-table-container button {
+    padding: 5px; 
+    margin-bottom: 0px;
+}
