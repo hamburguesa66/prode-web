@@ -1,11 +1,12 @@
 import { useState } from "react";
 import './GameCard.css';
-import { Bet } from "../../../model/Bet";
-import { Game } from "../../../model/Game";
+import { Bet } from "../../../../model/Bet";
+import { Game } from "../../../../model/Game";
 import dayjs from "dayjs";
 import Modal from "react-responsive-modal";
-import BetForm from "./BetForm";
-import { Team } from "../../../model/Team";
+import BetForm from "../BetForm";
+import { Team } from "../../../../model/Team";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface GamePanelProps {
     game: Game;
@@ -15,21 +16,6 @@ export interface GamePanelProps {
 
 const GameCard = (props: GamePanelProps) => {
     const [openDialog, setOpenDialog] = useState<boolean>(false);
-
-    const getState = () => {
-        switch (props.game.state) {
-            case 'NOT_STARTED':
-                return "No iniciado";
-            case 'IN_PROGRESS':
-                return "En juego";
-            case 'PENDING_RESULT':
-                return "Finalizado (sin resultado)"
-            case 'DONE':
-                return "Finalizado (" + getResult() + ")";
-            default:
-                return "";
-        }
-    }
 
     const getResult = () => {
         switch (props.game.result) {
@@ -120,36 +106,44 @@ const GameCard = (props: GamePanelProps) => {
 
     return (
         <>
-            <Modal open={openDialog} onClose={() => setOpenDialog(false)} center>
+            <Modal 
+                open={openDialog} 
+                onClose={() => setOpenDialog(false)} 
+                center
+                closeOnEsc={false}
+                closeOnOverlayClick={false}
+            >
                 <BetForm 
                     game={props.game} 
                     bet={props.bet}
                     onSuccess={handleBetChange}
                     onError={() => setOpenDialog(false)} />
             </Modal>
-            <div className="game-card-container">
+            <div className="basic-table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th className="game-card-rounded-th"><abbr title="Local">L.</abbr></th>
-                            <th><abbr title="Visitante">V.</abbr></th>
-                            <th>Torneo</th>
-                            <th>🗓️</th>
-                            <th className="game-card-rounded-th">Estado</th>
+                            <th className="text-center"><FontAwesomeIcon icon="l" /></th>
+                            <th className="text-center"><FontAwesomeIcon icon="v" /></th>
+                            <th className="text-center"><FontAwesomeIcon icon="trophy" /></th>
+                            <th className="text-center"><FontAwesomeIcon icon="calendar" /></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{buildTeamWithScore(props.game.homeTeam, props.game.homeTeamScore)}</td>
-                            <td>{buildTeamWithScore(props.game.awayTeam, props.game.awayTeamScore)}</td>
-                            <td>{buildCompetitionImg()}</td>
-                            <td>{dayjs(props.game.date).format("DD/MM HH:mm")}hs</td>
-                            <td>{getState()}</td>
+                            <td className="text-center">{buildTeamWithScore(props.game.homeTeam, props.game.homeTeamScore)}</td>
+                            <td className="text-center">{buildTeamWithScore(props.game.awayTeam, props.game.awayTeamScore)}</td>
+                            <td className="text-center">{buildCompetitionImg()}</td>
+                            <td className="text-center">
+                                {dayjs(props.game.date).format("DD/MM")}
+                                <br/>
+                                {dayjs(props.game.date).format("HH:mm")}hs
+                            </td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colSpan={5} style={{ backgroundColor: getFooterBackgroundColor() }}>
+                            <td colSpan={4} className="text-center" style={{ backgroundColor: getFooterBackgroundColor(), borderRadius: "10px" }}>
                                 <p>
                                     <strong>Tu apuesta: </strong>
                                     {prettyPrintBet()}

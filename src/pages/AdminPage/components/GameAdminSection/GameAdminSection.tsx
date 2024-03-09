@@ -6,6 +6,7 @@ import Modal from "react-responsive-modal";
 import DeleteGameForm from "./DeleteGameForm";
 import CloseGameForm from "./CloseGameForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Page } from "../../../../model/Page";
 
 const GameAdminSection = () => {
     const [games, setGames] = useState<Game[]>([]);
@@ -16,13 +17,14 @@ const GameAdminSection = () => {
     const { response, loading } = useAxios({
         lazy: false,
         method: "GET",
-        url: `/game`,
+        url: `/game/list?page=0&size=25&sortOrder=DESC&state=IN_PROGRESS`,
         data: undefined
     });
 
     useEffect(() => {
         if (response?.data) {
-            setGames(response.data as Game[]);
+            const page = response.data as Page<Game>;
+            setGames(page.data);
         }
     }, [response]);
 

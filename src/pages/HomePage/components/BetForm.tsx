@@ -4,6 +4,7 @@ import { Bet } from "../../../model/Bet";
 import useAxios from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 import MatchHeader from "../../../components/Shared/MatchHeader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface GamePanelProps {
     game: Game;
@@ -34,6 +35,7 @@ const BetForm = (props: GamePanelProps) => {
             toast.success("Tu apuesta fue registrada correctamente");
             props.onSuccess(props.game, response.data as Bet);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [response]);
 
     useEffect(() => {
@@ -41,11 +43,12 @@ const BetForm = (props: GamePanelProps) => {
             toast.error(`Harry, ha ocurrido un problema. Mirá la consola.`);
             props.onError();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [error]);
 
     return (
         <>
-            <h3>🎲 Hacer una apuesta</h3>
+            <h3><FontAwesomeIcon icon="dice" /> Hacer una apuesta</h3>
             <MatchHeader game={props.game} />
             <p>
                 Tipo de apuesta:

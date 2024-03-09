@@ -1,0 +1,13 @@
+#search-game-form-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#search-game-form-container div:first-child  {
+    width: 70%;
+}
+
+#search-game-form-container div:last-child  {
+    width: 30%; 
+    padding-left: 4px;
+}

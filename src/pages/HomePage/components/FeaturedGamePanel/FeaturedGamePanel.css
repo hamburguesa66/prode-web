@@ -1,0 +1,27 @@
+.featured-panel-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.1rem;
+    border-bottom: 1px dashed #dbdbdb;
+}
+
+.featured-panel-container:last-child {
+    border-bottom: none;
+}
+
+.featured-panel-item-wrapper {
+    width: 375px;
+    display: inline-block;
+    padding: 0.1rem;
+    vertical-align: top;
+}
+
+.featured-panel-container-skeleton {
+    height: 207.3px; /* 244.7 */
+    border-radius: 10px;
+    border: 1px dashed #dbdbdb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

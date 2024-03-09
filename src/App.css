@@ -29,8 +29,17 @@
     width: 100%;
 }
 
+.half-width {
+    width: 50%;
+}
+
 .margin-auto {
     margin: auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
 }
 
 /* Common:Tables */
@@ -48,8 +57,14 @@
     background-color: #efefef;
 }
 
-.basic-table-container th:first-child, th:last-child, tfoot tr {
-    border-radius: 10px;
+.basic-table-container th:first-child {
+    border-radius: 0px;
+    border-top-left-radius: 10px;
+}
+
+.basic-table-container th:last-child {
+    border-radius: 0px;
+    border-top-right-radius: 10px;
 }
 
 .basic-table-container table {
