@@ -18,7 +18,7 @@ const RankingByCompetition = () => {
     const { response, loading, sendData } = useAxios({
         lazy: true,
         method: "GET",
-        url: `/bet/search?competitionId=${competition?.id}`,
+        url: `/user/score/competition/${competition?.id}`,
         data: undefined
     });
 

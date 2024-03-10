@@ -10,7 +10,7 @@ const GeneralRanking = () => {
     const { response, loading } = useAxios({
         lazy: false,
         method: "GET",
-        url: `/statistics/ranking`,
+        url: `/user/score`,
         data: undefined
     });
 
