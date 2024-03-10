@@ -29,7 +29,7 @@ const HomePage = () => {
 
                     <FeaturedGamePanel
                         title="Finalizados"
-                        icon="newspaper"
+                        icon="check-double"
                         sortOrder="DESC"
                         state="DONE" />
                 </>

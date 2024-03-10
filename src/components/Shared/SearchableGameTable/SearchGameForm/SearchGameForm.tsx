@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './SearchGameForm.css';
 import AwesomeButton from "../../AwesomeButton/AwesomeButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface SearchGameFormProps {
     loading: boolean,
@@ -31,7 +32,7 @@ const SearchGameForm = (props: SearchGameFormProps) => {
                 </div>
                 <div>
                     <AwesomeButton className="full-width" onClick={handleSubmit} disabled={props.loading} >
-                        Buscar
+                        <FontAwesomeIcon icon={"magnifying-glass"} />
                     </AwesomeButton>
                 </div>
             </div>
