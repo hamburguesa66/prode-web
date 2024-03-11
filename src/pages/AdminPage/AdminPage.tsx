@@ -8,6 +8,7 @@ import CreateCompetitionForm from "./components/CreateCompetitionForm";
 import GameAdminSection from "./components/GameAdminSection/GameAdminSection";
 import Jumbotron from "../../components/Shared/Jumbotron/Jumbotron";
 import Alert from "../../components/Shared/Alert/Alert";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 enum AdminPageActions {
     Games = "Partidos que requieren atención",
@@ -31,14 +32,11 @@ const AdminPage = () => {
                 <Navigate to="/" replace={true} />
             ) : (
                 <>
-                    <Alert type="default">
-                    <Jumbotron title="Administración" icon="screwdriver-wrench">
-                        Selecciona una acci&oacute;n:
-                        <select defaultValue={action} onChange={(e) => changeAction(e)}>
-                            {Object.values(AdminPageActions).map(it => <option value={it}>{it}</option>)}
-                        </select>
-                    </Jumbotron>
-                    </Alert>
+                    <h2><FontAwesomeIcon icon="screwdriver-wrench" /> Administraci&oacute;n</h2>
+                    <p>Fusce diam dolor, aliquam et tortor a, porttitor porta augue. Nulla facilisi. Vestibulum et sem eu nunc imperdiet volutpat ut a lectus. Proin consequat justo luctus nulla sollicitudin elementum. In neque nibh, hendrerit convallis ullamcorper eget, interdum nec nisi. Morbi maximus porttitor ex ac lobortis.</p>
+                    <select className="full-width" defaultValue={action} onChange={(e) => changeAction(e)}>
+                        {Object.values(AdminPageActions).map(it => <option value={it}>{it}</option>)}
+                    </select>
                     {action === AdminPageActions.Games && <GameAdminSection />}
                     {action === AdminPageActions.CreateTeam && <CreateTeamForm />}
                     {action === AdminPageActions.CreateCompetition && <CreateCompetitionForm />}

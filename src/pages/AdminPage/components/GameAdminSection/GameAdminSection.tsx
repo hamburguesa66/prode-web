@@ -55,7 +55,7 @@ const GameAdminSection = () => {
     return (
         <>
             <h3><FontAwesomeIcon icon="bell" /> Partidos que requieren atenci&oacute;n</h3>
-            <p>Partidos pendientes de carga de resultado o pendientes de c&oacute;mputo (para el ranking).</p>
+            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec egestas ultrices posuere. Quisque fringilla consectetur velit, a vestibulum massa ullamcorper dictum.</p>
             {selectedGame && <>
                 <Modal
                     open={isDeleteFormOpen}

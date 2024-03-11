@@ -65,8 +65,9 @@ const CondensedGameTable = (props: CondensedGameTableProps) => {
                         <tr>
                             <td colSpan={5} className="condensed-game-table-td-centered">
                                 <FontAwesomeIcon icon="spinner" spin />
-                            </td></tr>
-                    ) : (
+                            </td>
+                        </tr>
+                    ) : props.games.length > 0 ? (
                         props.games.map((it, idx) =>
                             <tr key={idx}>
                                 <td className="condensed-game-table-td">
@@ -81,6 +82,12 @@ const CondensedGameTable = (props: CondensedGameTableProps) => {
                                 </td>
                             </tr>
                         )
+                    ) : (
+                        <tr>
+                            <td colSpan={5} className="condensed-game-table-td-centered">
+                                No se encontraron partidos.
+                            </td>
+                        </tr>
                     )}
                 </tbody>
             </table>

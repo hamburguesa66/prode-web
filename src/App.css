@@ -42,6 +42,14 @@
     flex-direction: row;
 }
 
+.flex-skeleton-a {
+    border-radius: 10px;
+    border: 1px dashed #dbdbdb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Common:Tables */
 
 .basic-table-container {
