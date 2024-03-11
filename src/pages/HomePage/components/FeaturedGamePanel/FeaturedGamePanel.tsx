@@ -58,15 +58,21 @@ const FeaturedGamePanel = (props: FeaturedGamePanelProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const error = gError || bError;
 
-    const onBetChange = (_game: Game, bet: Bet) => {
-        setBets(
-            bets.map(it => {
-                if (it.id === bet.id) {
-                    return bet;
-                }
-                return it;
-            })
-        );
+    const onBetChange = (game: Game, bet: Bet) => {
+        if(bets.filter(it => it.gameId === game.id).length === 0) {
+            const newBets = [... bets];
+            newBets.push(bet);
+            setBets(newBets);
+        } else {
+            setBets(
+                bets.map(it => {
+                    if (it.gameId === game.id) {
+                        return bet;
+                    }
+                    return it;
+                })
+            );
+        }
     };
 
     return (
