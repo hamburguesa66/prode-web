@@ -13,9 +13,7 @@ const RulesetPage = () => {
             ) : (
                 <>
                     <Jumbotron icon="book" title="Reglamento" />
-                    <Alert type="default">
-                        <Ruleset />
-                    </Alert>
+                    <Ruleset />
                 </>
             )}
         </>
