@@ -42,6 +42,21 @@
     flex-direction: row;
 }
 
+.flex-container-input div:first-child  {
+    width: 70%;
+    display: inline-block;
+}
+
+.flex-container-input div:first-child input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.flex-container-input div:last-child  {
+    width: 30%;
+    padding-left: 4px;
+}
+
 .flex-skeleton-a {
     border-radius: 10px;
     border: 1px dashed #dbdbdb;

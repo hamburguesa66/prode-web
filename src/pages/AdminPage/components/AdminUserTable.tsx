@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import dayjs from "dayjs";
-import { act } from "react-dom/test-utils";
 import toast from "react-hot-toast";
-
-export interface User {
-    uuid: string,
-    name: string,
-    isApproved: Boolean,
-    isActive: Boolean,
-    isAdmin: Boolean,
-    createdDate: Date,
-    lastLoginDate: Date | undefined
-}
+import { User } from "../../../model/User";
 
 const AdminUserTable = () => {
     const [users, setUsers] = useState<User[]>([]);

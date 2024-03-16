@@ -1,0 +1,42 @@
+.face-to-face-table-container {
+    padding-top: 2rem;
+    border: 1px dashed #dbdbdb;
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+.face-to-face-table-container table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 2rem;
+}
+
+.face-to-face-table-container tbody {
+    display: table;
+    width: 100%;
+}
+
+.face-to-face-table-container thead {
+    display: table;
+    width: 100%;
+}
+
+.face-to-face-table-th {
+    width: 200px;
+}
+
+.face-to-face-table-placeholder-p {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.face-to-face-table-tr-1 {
+    border-top: 1px dashed #dbdbdb;
+    background-color: #f0f0f0;
+}
+
+.face-to-face-table-tr-2 {
+    background-color: #f5f5f5;
+    border-bottom: 1px dashed #dbdbdb;
+}
