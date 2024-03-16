@@ -1,0 +1,9 @@
+#paginated-user-table-container {
+    background-color: #fafafa;
+    height: 515.4px; /* 35.4 + (48 * 10) */
+}
+
+#paginated-user-table-container-mobile {
+    background-color: #fafafa;
+    height: 855.4px; /* 35.4 + (82 * 10) */
+}

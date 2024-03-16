@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import CreateGameForm from "./components/CreateGameForm";
 import { useUserContext } from "../../context/UserContext";
 import { Navigate } from "react-router-dom";
-import AdminUserTable from "./components/AdminUserTable";
 import CreateTeamForm from "./components/CreateTeamForm";
 import CreateCompetitionForm from "./components/CreateCompetitionForm";
 import GameAdminSection from "./components/GameAdminSection/GameAdminSection";
-import Jumbotron from "../../components/Shared/Jumbotron/Jumbotron";
-import Alert from "../../components/Shared/Alert/Alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UserDashboard from "./components/UserDashboard/UserDashboard";
 
 enum AdminPageActions {
     Games = "Partidos que requieren atención",
@@ -41,7 +39,7 @@ const AdminPage = () => {
                     {action === AdminPageActions.CreateTeam && <CreateTeamForm />}
                     {action === AdminPageActions.CreateCompetition && <CreateCompetitionForm />}
                     {action === AdminPageActions.CreateGame && <CreateGameForm />}
-                    {action.valueOf() === AdminPageActions.Users && <AdminUserTable />}
+                    {action.valueOf() === AdminPageActions.Users && <UserDashboard />}
                 </>
             )}
         </>
