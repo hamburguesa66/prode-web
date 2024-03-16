@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# prode-web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend for a custom implementation of the argentinian sports forecasting game commonly known as [PRODE](https://es.wikipedia.org/wiki/Pron%C3%B3sticos_deportivos).  
 
-## Available Scripts
+If you are looking the backend piece, go [here](https://github.com/hamburguesa66/prode-api).
 
-In the project directory, you can run:
+## Requirements
 
-### `yarn start`
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can learn more by checking the proper [documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [Node.js](https://nodejs.org/) (v16+)
+* [npm](https://www.npmjs.com/) (v8+)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Local setup
 
-### `yarn test`
+1. Clone the repository.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/hamburguesa66/prode-web
+```
 
-### `yarn build`
+2. Get into `prode-web` and install the dependencies.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Create a file named `.env.local` with the following:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+REACT_APP_API_URL=http://localhost:8080/
+```
 
-### `yarn eject`
+> Note: the final location would be `./prode-web/.env.local`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Run the app.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits. You will also see any lint errors in the console.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Deployment
 
-## Learn More
+### Generate build
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Build the app for production to the `build` folder.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn build
+```
+
+> The command bundles React in production mode and optimizes the build for the best performance.
+
+> The build is minified and the filenames include the hashes.
+
+> See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### Server side setup
+
+1. Configure the following environment variables:
+
+| Variable            | Description                   | Example                 |  
+|---------------------|-------------------------------|-------------------------|
+| `REACT_APP_API_URL` | Base URL of the API (backend) | `http://localhost:8080` |
+
+2. Set up the Redirect and Rewrite Rules.
+
+| Source              | Destination                   | Action                  |  
+|---------------------|-------------------------------|-------------------------|
+| `/*`                | `/index.html`                 | `Rewrite`               |
