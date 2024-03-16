@@ -1,0 +1,30 @@
+#start-page-loading-gif {
+    margin-top: 1rem;
+}
+
+#start-page-loading-gif div {
+    padding: 1rem;
+}
+
+#start-page-loading-gif div img {
+    border-radius: 10px;
+}
+
+#start-page-desktop div:first-child {
+    width: 40%;
+    padding-top: 1rem;
+    padding-bottom: 6px;
+    padding-right: 1rem;
+    min-height: 100vh;
+}
+
+#start-page-desktop div:first-child img {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#start-page-desktop div:last-child {
+    width: 60%;
+}
