@@ -37,6 +37,13 @@ const BetForm = (props: GamePanelProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [response]);
 
+    useEffect(() => {
+        setBetResult(props.bet?.gameResult || "");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.bet]);
+    
+    const btnDisabled = betResult.length === 0 || props.bet?.gameResult === betResult;
+
     return (
         <>
             <p>
@@ -54,7 +61,7 @@ const BetForm = (props: GamePanelProps) => {
                     <option value="DRAW">Empate</option>
                 </select>
             </p>
-            <AwesomeButton disabled={betResult.length === 0} loading={loading} onClick={() => sendData()} >
+            <AwesomeButton disabled={btnDisabled} loading={loading} onClick={() => sendData()} >
                 <FontAwesomeIcon icon="dice" /> Guardar
             </AwesomeButton>
         </>
