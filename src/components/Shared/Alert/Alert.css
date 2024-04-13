@@ -7,20 +7,25 @@
 }
 
 .alert-pikachu {
-    border-bottom: 1px solid ;
-    border-color: #fa8c16;
-    background-color: #ffe7ba;
-}
-
-.alert-pikachu hr {
-    border-color: #ffccc7;
+    color: #612500;
+    border-color: #ffe7ba;
+    background-color: #fff7e6;
 }
 
 .alert-diablo {
+    color: #5c0011;
     border-color: #ffccc7;
     background-color: #fff1f0;
 }
 
-.alert-diablo hr {
-    border-color: #ffccc7;
+.alert-success {
+    color: #092b00;
+    border-color: #d9f7be;
+    background-color: #f6ffed;
+}
+
+.alert-info {
+    color: #001d66;
+    border-color: #bae0ff;
+    background-color: #e6f4ff;
 }

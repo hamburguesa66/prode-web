@@ -3,7 +3,7 @@ import './Alert.css';
 
 export interface AlertProps {
     children: ReactNode;
-    type: "default" | "pikachu" | "diablo"
+    type: "default" | "pikachu" | "diablo" | "success" | "info"
 }
 
 const Alert = (props: AlertProps) => {

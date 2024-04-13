@@ -4,6 +4,7 @@ import { Game } from "../../../../../model/Game";
 import { Bet } from "../../../../../model/Bet";
 import useAxios from "../../../../../hooks/useAxios";
 import AwesomeButton from "../../../AwesomeButton/AwesomeButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface GamePanelProps {
     game: Game;
@@ -54,7 +55,7 @@ const BetForm = (props: GamePanelProps) => {
                 </select>
             </p>
             <AwesomeButton disabled={betResult.length === 0} loading={loading} onClick={() => sendData()} >
-                Guardar
+                <FontAwesomeIcon icon="dice" /> Guardar
             </AwesomeButton>
         </>
     )

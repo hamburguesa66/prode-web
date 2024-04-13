@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Game } from "../../../../model/Game";
 import MatchHeader from "../../MatchHeader";
-import BetForm from "./Forms/BetForm";
 import { useEffect, useState } from "react";
 import { Bet } from "../../../../model/Bet";
 import useAxios from "../../../../hooks/useAxios";
 import DeleteGameForm from "./Forms/DeleteForm";
 import CloseGameForm from "./Forms/CloseForm";
 import ClickableSpan from "../../ClickableSpan/ClickableSpan";
+import BetSection from "./Sections/BetSection";
 
 export interface GameDetailProps {
     game: Game;
@@ -57,10 +57,7 @@ const GameDetail = (props: GameDetailProps) => {
                     <FontAwesomeIcon icon="spinner" spin /> Cargando apuesta ...
                 </>
             ) : (
-                <>
-                    <h4><FontAwesomeIcon icon="dice" /> Tu apuesta: {bet?.gameResult || "Ninguna"}</h4>
-                    {props.game.state === 'NOT_STARTED' && <BetForm game={props.game} bet={bet} onSuccess={(g, b) => { setBet(b) }} />}
-                </>
+                <BetSection game={props.game} bet={bet} onUpdate={(it) => setBet(it)}/>
             )}
 
             {props.isAdmin && <>

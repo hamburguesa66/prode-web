@@ -5,6 +5,10 @@
     background-color: #fafafa;
 }
 
+.match-header-container table {
+    margin-bottom: 0px;
+}
+
 .match-header-td-left {
     text-align: left;
 }
@@ -19,4 +23,16 @@
 
 .match-header-v-align-middle {
     vertical-align: middle;
+}
+
+.match-header-summary {
+    text-align: center;
+    list-style: none;
+    padding-left: 0px;
+    font-size: small;
+}
+
+.match-header-summary li {
+    display: inline-block;
+    margin-right: 6px;
 }
