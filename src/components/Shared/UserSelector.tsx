@@ -15,7 +15,7 @@ const UserSelector = (props: UserSelectorProps) => {
     const [query, setQuery] = useState<string>("");
     const [users, setUsers] = useState<User[]>([]);
 
-    const { response, loading, error, sendData } = useAxios({
+    const { response, loading, sendData } = useAxios({
         lazy: true,
         method: "GET",
         url: `/user/search?name=${query}`,
@@ -32,6 +32,7 @@ const UserSelector = (props: UserSelectorProps) => {
         if (query) {
             sendData();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     return (
@@ -75,7 +76,7 @@ const UserSelector = (props: UserSelectorProps) => {
                                         </td>
                                         <td className="text-right text-middle">
                                             <AwesomeButton onClick={() => props.onSelect(it)} >
-                                                Seleccionar <FontAwesomeIcon icon="hand-point-left" />
+                                                <FontAwesomeIcon icon="hand-point-left" />
                                             </AwesomeButton>
                                         </td>
                                     </tr>

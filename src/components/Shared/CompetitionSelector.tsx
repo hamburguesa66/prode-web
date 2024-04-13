@@ -14,7 +14,7 @@ const CompetitionSelector = (props: CompetitionSelectorProps) => {
     const [query, setQuery] = useState<string>("");
     const [competitions, setCompetitions] = useState<Competition[]>([]);
 
-    const { response, loading, error, sendData } = useAxios({
+    const { response, loading, sendData } = useAxios({
         lazy: true,
         method: "GET",
         url: `/competition?name=${query}`,
@@ -31,6 +31,7 @@ const CompetitionSelector = (props: CompetitionSelectorProps) => {
         if (query) {
             sendData();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     return (
@@ -74,7 +75,7 @@ const CompetitionSelector = (props: CompetitionSelectorProps) => {
                                         </td>
                                         <td className="text-right text-middle">
                                             <AwesomeButton onClick={() => props.onSelect(it)} >
-                                                Seleccionar <FontAwesomeIcon icon="hand-point-left" />
+                                                <FontAwesomeIcon icon="hand-point-left" />
                                             </AwesomeButton>
                                         </td>
                                     </tr>

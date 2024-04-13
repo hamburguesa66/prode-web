@@ -31,6 +31,7 @@ const TeamSelector = (props: TeamSelectorProps) => {
         if (query) {
             sendData();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     return (
@@ -74,7 +75,7 @@ const TeamSelector = (props: TeamSelectorProps) => {
                                         </td>
                                         <td className="text-right text-middle">
                                             <AwesomeButton onClick={() => props.onSelect(it)} >
-                                                Seleccionar <FontAwesomeIcon icon="hand-point-left" />
+                                                <FontAwesomeIcon icon="hand-point-left" />
                                             </AwesomeButton>
                                         </td>
                                     </tr>
