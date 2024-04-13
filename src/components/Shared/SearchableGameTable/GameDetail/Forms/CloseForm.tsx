@@ -1,24 +1,21 @@
+import './CloseForm.css';
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import './CloseGameForm.css';
-import MatchHeader from "../../../../components/Shared/MatchHeader";
-import { Game } from "../../../../model/Game";
-import useAxios from "../../../../hooks/useAxios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Alert from "../../../../components/Shared/Alert/Alert";
-import AwesomeButton from "../../../../components/Shared/AwesomeButton/AwesomeButton";
+import { Game } from "../../../../../model/Game";
+import useAxios from "../../../../../hooks/useAxios";
+import AwesomeButton from "../../../AwesomeButton/AwesomeButton";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export interface CloseGameFormProps {
     game: Game;
-    onCancel: () => void;
     onSuccess: (it: Game) => void;
-    onError: () => void;
 }
 
 const CloseGameForm = (props: CloseGameFormProps) => {
     const [result, setResult] = useState<string>();
     const [homeTeamGoals, setHomeTeamGoals] = useState<number>(0);
     const [awayTeamGoals, setAwayTeamGoals] = useState<number>(0);
+    const [confirmation, setConfirmation] = useState<boolean>(false);
 
     const changeHomeTeamGoals = (e: React.FormEvent<HTMLInputElement>) => {
         setHomeTeamGoals(e.currentTarget.valueAsNumber);
@@ -82,36 +79,37 @@ const CloseGameForm = (props: CloseGameFormProps) => {
                 }
             );
         }
-    }, [response, awayTeamGoals, homeTeamGoals, props, result]);
+    }, [response]);
 
-    useEffect(() => {
-        if (error) {
-            toast.error(`Ha ocurrido un problema al intentar cerrar el partido`);
-            props.onError();
-        }
-    }, [error, props]);
-
-    const disableSubmitButton = loading || Number.isNaN(homeTeamGoals)
-        || Number.isNaN(awayTeamGoals);
+    const disableSubmitButton = loading || Number.isNaN(homeTeamGoals) 
+        || Number.isNaN(awayTeamGoals) || !confirmation;
 
     return (
         <>
-            <h3><FontAwesomeIcon icon="flag-checkered" /> Cerrar un partido</h3>
-            <MatchHeader game={props.game} />
+            <p>
+                Los resultados de los partidos deben ser cargados <strong>manualmente</strong> en el sistema.
+                Complete los campos solicitados a continuaci&oacute;n y seleccione "Guardar".
+                El resultado que se cargue aqu&iacute; ser&aacute; utilizado para <strong>procesar las apuestas y actualizar el ranking</strong>, por lo que esta operaci&oacute;n puede tardar unos minutos.
+                Recuerde que el resultado que hay que cargar es el de los <strong>noventa (90)</strong> minutos (no debe tomar el resultado del tiempo extra o penales).
+                Esta operaci&oacute;n es <strong>permanente</strong> y no se puede deshacer.
+            </p>
             <p>
                 Goles {props.game.homeTeam.name} (Local):
                 <input className="close-game-form-number-input" type="number" value={homeTeamGoals} onChange={(e) => changeHomeTeamGoals(e)} />
                 Goles {props.game.awayTeam.name} (Visitante):
                 <input className="close-game-form-number-input" type="number" value={awayTeamGoals} onChange={(e) => changeAwayTeamGoals(e)} />
             </p>
-            <Alert type="pikachu">
+            <div className="close-game-form-alert">
                 <strong>Resultado:</strong> {prettyPrintResult()}
-            </Alert>
+            </div>
+            <p>
+                <label>
+                    <input type="checkbox" checked={confirmation} onChange={() => setConfirmation(!confirmation)} />
+                    Confirmo que el resultado es el correcto
+                </label>
+            </p>
             <AwesomeButton loading={loading} disabled={disableSubmitButton} onClick={sendData}>
-                Enviar
-            </AwesomeButton>
-            <AwesomeButton disabled={loading} onClick={props.onCancel}>
-                Cancelar
+                <FontAwesomeIcon icon="floppy-disk" /> Guardar
             </AwesomeButton>
         </>
     )

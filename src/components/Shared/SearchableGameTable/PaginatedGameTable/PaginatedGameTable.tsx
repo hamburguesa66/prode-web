@@ -10,7 +10,8 @@ export interface PaginatedGameTableProps {
     loading: boolean,
     pageable: Page<Game>,
     getNextPage: () => void,
-    getPreviousPage: () => void
+    getPreviousPage: () => void,
+    onSelection: (game: Game) => void
 }
 
 const PaginatedGameTable = (props: PaginatedGameTableProps) => {
@@ -53,6 +54,12 @@ const PaginatedGameTable = (props: PaginatedGameTableProps) => {
         }
     }
 
+    const actions = (it: Game) => {
+        return <>
+            <button onClick={() => props.onSelection(it)} className="btn-small"><FontAwesomeIcon icon="magnifying-glass-plus" /></button>
+        </>;
+    }
+
     return (
         <>
             <div id={isDesktop ? "paginated-game-table-container" : "paginated-game-table-container-mobile"} className="basic-table-container">
@@ -80,13 +87,13 @@ const PaginatedGameTable = (props: PaginatedGameTableProps) => {
                         ) : (
                             props.pageable.data.map((it, idx) =>
                                 <tr key={idx}>
-                                    <td className="text-center">
+                                    <td className="text-center text-middle">
                                         <img src={it.competition.logo} alt={it.competition.name} width={24} height={24} />
                                     </td>
-                                    <td className="text-center">{getSummary(it)}</td>
-                                    <td className="text-center">{dayjs(it.date).format("DD/MM HH:mm")}</td>
-                                    <td className="text-center">{getState(it)}</td>
-                                    <td className="text-center"></td>
+                                    <td className="text-center text-middle">{getSummary(it)}</td>
+                                    <td className="text-center text-middle">{dayjs(it.date).format("DD/MM HH:mm")}</td>
+                                    <td className="text-center text-middle">{getState(it)}</td>
+                                    <td className="text-center text-middle">{actions(it)}</td>
                                 </tr>
                             )
                         )}

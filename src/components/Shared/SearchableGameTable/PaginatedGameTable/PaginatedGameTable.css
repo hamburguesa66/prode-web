@@ -1,9 +1,9 @@
 #paginated-game-table-container {
     background-color: #fafafa;
-    height: 455.4px; /* 35.4 + (42 * 10) */
+    height: 510px; /* 35.4 + (48 * 10) */
 }
 
 #paginated-game-table-container-mobile {
     background-color: #fafafa;
-    height: 605.4px; /* 35.4 + (57 * 10) */
+    height: 615.4px; /* 35.4 + (58 * 10) */
 }

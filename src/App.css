@@ -65,6 +65,10 @@
     align-items: center;
 }
 
+.btn-small {
+    padding: 5px;
+}
+
 /* Common:Tables */
 
 .basic-table-container {

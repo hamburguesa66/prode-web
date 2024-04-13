@@ -1,5 +1,5 @@
 .close-game-form-number-input {
-    width: 95%;
+    width: 97.5%;
 }
 
 .close-game-form-alert {
@@ -8,4 +8,5 @@
     border-bottom: 1px solid #fa8c16;
     border-right: 1px solid #fa8c16;
     background-color: #ffe7ba;
+    margin-bottom: 1rem;
 }

@@ -4,7 +4,7 @@ import { useUserContext } from "../../context/UserContext";
 import { Navigate } from "react-router-dom";
 import CreateTeamForm from "./components/CreateTeamForm";
 import CreateCompetitionForm from "./components/CreateCompetitionForm";
-import GameAdminSection from "./components/GameAdminSection/GameAdminSection";
+import GameAdminSection from "./components/GameAdminSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 
