@@ -4,9 +4,11 @@ import { Bet } from "../../../../model/Bet";
 import { Game } from "../../../../model/Game";
 import dayjs from "dayjs";
 import Modal from "react-responsive-modal";
-import BetForm from "../BetForm";
 import { Team } from "../../../../model/Team";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BetForm from "../../../../components/Shared/BetForm";
+import MatchHeader from "../../../../components/Shared/MatchHeader";
+import usePrettifyBet from "../../../../hooks/usePrettifyBet";
 
 export interface GamePanelProps {
     game: Game;
@@ -17,47 +19,22 @@ export interface GamePanelProps {
 const GameCard = (props: GamePanelProps) => {
     const [openDialog, setOpenDialog] = useState<boolean>(false);
 
-    const getResult = () => {
-        switch (props.game.result) {
-            case 'HOME_TEAM_WON':
-                return "L";
-            case 'AWAY_TEAM_WON':
-                return "V";
-            case 'DRAW':
-                return "E";
-            default:
-                return "";
-        }
-    }
-
-    const prettyPrintBet = () => {
-        if (props.bet) {
-            switch (props.bet.gameResult) {
-                case 'HOME_TEAM_WON':
-                    return <>Gana {props.game.homeTeam.name} (L)</>
-                case 'AWAY_TEAM_WON':
-                    return <>Gana {props.game.awayTeam.name} (V)</>
-                case 'DRAW':
-                    return <>Empate (E)</>
-            }
-        }
-        return <>Ninguna</>;
-    }
+    const { result, outcome } = usePrettifyBet({game: props.game, bet: props.bet});
 
     const buildTeamWithScore = (team: Team, score: number | undefined) => {
         let isLoser = false
 
-        if(props.game.result) {
-            if(props.game.result === 'HOME_TEAM_WON' && team.id === props.game.awayTeam.id) {
+        if (props.game.result) {
+            if (props.game.result === 'HOME_TEAM_WON' && team.id === props.game.awayTeam.id) {
                 isLoser = true;
             }
-            if(props.game.result === 'AWAY_TEAM_WON' && team.id === props.game.homeTeam.id) {
+            if (props.game.result === 'AWAY_TEAM_WON' && team.id === props.game.homeTeam.id) {
                 isLoser = true;
             }
         }
 
         return <>
-            <img className={ isLoser ? "loser-team" : undefined} 
+            <img className={isLoser ? "loser-team" : undefined}
                 src={team.logo} alt={team.name} title={team.name} />
             <br />
             <code>{props.game.result ? score : "-"}</code>
@@ -74,14 +51,14 @@ const GameCard = (props: GamePanelProps) => {
     }
 
     const prettyPrintBetResult = () => {
-        if(props.bet && props.game.result) {
-            if(props.bet.gameResult === props.game.result) {
-                return <strong style={{ color: "#135200" }}>Ganaste 3 puntos</strong>;
+        if (props.bet && props.game.result) {
+            if (outcome.success) {
+                return <strong style={{ color: "#135200" }}>{outcome.message}</strong>;
             } else {
-                return <strong style={{ color: "#820014" }}>Perdiste</strong>;
+                return <strong style={{ color: "#820014" }}>{outcome.message}</strong>;
             }
         }
-        return <></>;
+        return <>-</>;
     }
 
     const getFooterBackgroundColor = () => {
@@ -89,7 +66,7 @@ const GameCard = (props: GamePanelProps) => {
             if (props.game.state !== 'DONE') {
                 return "#e6f4ff";
             } else {
-                if (props.bet.gameResult === props.game.result) {
+                if (outcome.success) {
                     return "#f6ffed";
                 } else {
                     return "#fff1f0";
@@ -100,24 +77,25 @@ const GameCard = (props: GamePanelProps) => {
     }
 
     const handleBetChange = (game: Game, bet: Bet) => {
-        props.onBetChange(game,bet);
+        props.onBetChange(game, bet);
         setOpenDialog(false);
     };
 
     return (
         <>
-            <Modal 
-                open={openDialog} 
-                onClose={() => setOpenDialog(false)} 
+            <Modal
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
                 center
                 closeOnEsc={false}
                 closeOnOverlayClick={false}
             >
-                <BetForm 
-                    game={props.game} 
+                <h3><FontAwesomeIcon icon="dice" /> Hacer una apuesta</h3>
+                <MatchHeader game={props.game} />
+                <BetForm
+                    game={props.game}
                     bet={props.bet}
-                    onSuccess={handleBetChange}
-                    onError={() => setOpenDialog(false)} />
+                    onSuccess={handleBetChange} />
             </Modal>
             <div className="basic-table-container">
                 <table>
@@ -136,7 +114,7 @@ const GameCard = (props: GamePanelProps) => {
                             <td className="text-center">{buildCompetitionImg()}</td>
                             <td className="text-center">
                                 {dayjs(props.game.date).format("DD/MM")}
-                                <br/>
+                                <br />
                                 {dayjs(props.game.date).format("HH:mm")}hs
                             </td>
                         </tr>
@@ -145,15 +123,14 @@ const GameCard = (props: GamePanelProps) => {
                         <tr>
                             <td colSpan={4} className="text-center" style={{ backgroundColor: getFooterBackgroundColor(), borderRadius: "10px" }}>
                                 <p>
-                                    <strong>Tu apuesta: </strong>
-                                    {prettyPrintBet()}
+                                    <strong>Tu apuesta:</strong> {result}
                                 </p>
                                 {props.game.state === 'NOT_STARTED' &&
                                     <button type="button" onClick={() => setOpenDialog(true)}>
                                         {props.bet && "Modificar Apuesta"}{!props.bet && "Hacer Apuesta"}
                                     </button>
                                 }
-                                {props.game.state === 'DONE' && props.bet && <p>
+                                {props.game.state === 'DONE' && <p>
                                     {prettyPrintBetResult()}
                                 </p>}
                             </td>

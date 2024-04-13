@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Game } from "../../../../../model/Game";
 import { Bet } from "../../../../../model/Bet";
-import BetForm from "../Forms/BetForm";
+import BetForm from "../../../BetForm";
 import Alert from "../../../Alert/Alert";
 import useNico from "../../../../../hooks/usePrettifyBet";
 
