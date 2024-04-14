@@ -26,13 +26,9 @@
 }
 
 .match-header-summary {
-    text-align: center;
-    list-style: none;
-    padding-left: 0px;
     font-size: small;
 }
 
-.match-header-summary li {
-    display: inline-block;
+.match-header-summary span {
     margin-right: 6px;
 }

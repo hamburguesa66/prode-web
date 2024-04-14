@@ -65,36 +65,35 @@ const SearchableGameTable = () => {
     }
 
     useEffect(() => {
-        if (selectedGame) {
-            setDetailModalOpen(true);
-        } else {
-            setDetailModalOpen(false);
+        if (!isDetailModalOpen) {
+            setSelectedGame(undefined);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedGame]);
 
     return (
         <>
-            {selectedGame && <Modal
+            <Modal
                 open={isDetailModalOpen}
-                onClose={() => setSelectedGame(undefined)}
+                onClose={() => setDetailModalOpen(false)}
                 showCloseIcon={false}
                 closeOnOverlayClick={false}
                 closeOnEsc={false}
                 center>
-                    <GameDetail
-                        game={selectedGame}
-                        isAdmin={principal.isAdmin}
-                        onClose={() => setDetailModalOpen(false)}
-                        onRefresh={() => {setDetailModalOpen(false); sendData(); }}
-                    />
-            </Modal>}
+                {selectedGame && <GameDetail
+                    game={selectedGame}
+                    isAdmin={principal.isAdmin}
+                    onClose={() => setDetailModalOpen(false)}
+                    onRefresh={() => { setDetailModalOpen(false); sendData(); }} />
+                }
+            </Modal>
             <SearchGameForm loading={loading} onSubmit={onSearch} />
             <PaginatedGameTable
                 loading={loading}
                 pageable={pageable}
                 getNextPage={nextPage}
                 getPreviousPage={previousPage}
-                onSelection={(it) => { setSelectedGame(it) }}
+                onSelection={(it) => { setSelectedGame(it); setDetailModalOpen(true); }}
             />
         </>
     )

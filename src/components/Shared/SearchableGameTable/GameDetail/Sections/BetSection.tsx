@@ -1,9 +1,11 @@
+import './BetSection.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Game } from "../../../../../model/Game";
 import { Bet } from "../../../../../model/Bet";
 import BetForm from "../../../BetForm";
 import Alert from "../../../Alert/Alert";
 import useNico from "../../../../../hooks/usePrettifyBet";
+import useMediaQuery from "../../../../../hooks/useMediaQuery";
 
 export interface BetSectionProps {
     game: Game;
@@ -15,21 +17,26 @@ const BetSection = (props: BetSectionProps) => {
 
     const { result, type, outcome } = useNico({ bet: props.bet, game: props.game });
 
-    const nico = props.game.state === 'DONE' ? (outcome.success ? "success" : "diablo") : "pikachu";
+    const betAlertType = props.game.state === 'DONE' ? (outcome.success ? "success" : "diablo") : "pikachu";
+
+    const isDesktop = useMediaQuery('(min-width: 960px)');
 
     return (
         <>
-            <h4><FontAwesomeIcon icon="dice-one" /> Tu apuesta:</h4>
-
             {props.bet ? (
-                <Alert type={nico}>
-                    <strong>Tu resultado:</strong> {result}
-                    <br />
-                    <strong>Tu tipo de apuesta:</strong> {type}
-
-                    {props.game.state === 'DONE' && <p>
-                        <FontAwesomeIcon icon={outcome.success ? "circle-check" : "circle-xmark"} /> <strong>{outcome.message}</strong>
-                    </p>}
+                <Alert type={betAlertType}>
+                    <div className="flex-container">
+                        <div className={`half-width ${isDesktop ? "bet-section-font-medium" : "bet-section-font-small"}`}>
+                            <strong>Tu resultado:</strong> {result}
+                            <br />
+                            <strong>Tu tipo de apuesta:</strong> {type}
+                        </div>
+                        <div className={`half-width ${isDesktop ? "bet-section-font-large" : "bet-section-font-small"}`}>
+                            {props.game.state === 'DONE' && <div className="bet-section-outcome-panel">
+                                <FontAwesomeIcon icon={outcome.success ? "circle-check" : "circle-xmark"} /> <strong className="ml-5">{outcome.message}</strong>
+                            </div>}
+                        </div>
+                    </div>
                 </Alert>
             ) : (
                 <Alert type="default">Ninguna</Alert>

@@ -1,0 +1,27 @@
+.bet-section-outcome-panel {
+    border-left: 1px dashed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.bet-section-font-large {
+    font-size: large;
+}
+
+.bet-section-font-medium {
+    font-size: medium;
+}
+
+.bet-section-font-small {
+    font-size: smaller;
+}
+
+.bet-section-outcome-panel-success {
+    border-color: #ffccc7;
+}
+
+.bet-section-outcome-panel-failure {
+    border-color: #5c0011;
+}

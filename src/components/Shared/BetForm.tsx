@@ -54,7 +54,7 @@ const BetForm = (props: GamePanelProps) => {
             </p>
             <p>
                 Tu resultado:
-                <select className="full-width" defaultValue={betResult} onChange={(e) => changeBetResult(e)}>
+                <select className="full-width" value={betResult} onChange={(e) => changeBetResult(e)}>
                     {!props.bet && <option value={""} disabled={true}>Seleccione una opci&oacute;n</option>}
                     <option value="HOME_TEAM_WON">Gana {props.game.homeTeam.name} (Local)</option>
                     <option value="AWAY_TEAM_WON">Gana {props.game.awayTeam.name} (Visitante)</option>

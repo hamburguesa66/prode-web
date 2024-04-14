@@ -52,6 +52,7 @@ const GameDetail = (props: GameDetailProps) => {
 
             <MatchHeader game={props.game} />
 
+            <h4><FontAwesomeIcon icon="dice-one" /> Tu apuesta:</h4>
             {bLoading ? (
                 <>
                     <FontAwesomeIcon icon="spinner" spin /> Cargando apuesta ...

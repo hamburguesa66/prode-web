@@ -55,22 +55,21 @@ const MatchHeader = (props: MatchHeaderProps) => {
                                 {buildTeamImg(props.game.homeTeam)}
                                 &nbsp;
                                 {buildTeamAbbr(props.game.homeTeam)}
-                                {props.game.state === 'DONE' && <strong style={{ marginLeft: "12px" }}>{props.game.homeTeamScore || "-"}</strong>}
+                                {props.game.state === 'DONE' && <> <br/><strong>{props.game.homeTeamScore || 0}</strong></>}
                             </td>
                             <td className="match-header-td-centered match-header-v-align-middle">
                                 <VersusIcon />
                             </td>
                             <td className="match-header-td-left">
-                                {props.game.state === 'DONE' && <strong style={{ marginRight: "12px" }}>{props.game.awayTeamScore}</strong>}
                                 {buildTeamAbbr(props.game.awayTeam)}
                                 &nbsp;
                                 {buildTeamImg(props.game.awayTeam)}
+                                {props.game.state === 'DONE' && <><br/><strong>{props.game.awayTeamScore || 0}</strong></>}
                             </td>
                         </tr>
                         <tr>
                             <td colSpan={3} className="match-header-td-centered">
-                                <img className="match-header-v-align-middle"
-                                    width={16} height={16} src={props.game.competition.logo} alt={props.game.competition.name} />
+                                <img className="match-header-v-align-middle" width={16} height={16} src={props.game.competition.logo} alt={props.game.competition.name} />
                                 &nbsp;
                                 <small>{props.game.competition.name}</small>
                             </td>
@@ -78,17 +77,17 @@ const MatchHeader = (props: MatchHeaderProps) => {
                     </tbody>
                 </table>
             </div >
-            {props.game.state !== 'NOT_STARTED' && <ul className="match-header-summary">
-                <li>
-                    <FontAwesomeIcon icon="calendar" /> El partido comenz&oacute; el {dayjs(props.game.date).format("DD/MM HH:mm")}.
-                </li>
-                {props.game.state === 'PENDING_RESULT' && <li>
-                    <FontAwesomeIcon icon="info-circle" /> El partido ha terminado, pero falta que el administrador cargue el resultado en el sistema.
-                </li>}
-                {props.game.state === 'DONE' && <li>
-                    <FontAwesomeIcon icon="check-double" /> {prettyPrintResult(props.game)}
-                </li>}
-            </ul>}
+            {props.game.state !== 'NOT_STARTED' && <p className="match-header-summary">
+                <span>
+                    El partido comenz&oacute; el {dayjs(props.game.date).format("DD/MM HH:mm")}.
+                </span>
+                {props.game.state === 'PENDING_RESULT' && <span>
+                    El partido ha terminado, pero falta que el administrador cargue el resultado en el sistema.
+                </span>}
+                {props.game.state === 'DONE' && <span>
+                    {prettyPrintResult(props.game)}
+                </span>}
+            </p>}
         </>
     )
 }

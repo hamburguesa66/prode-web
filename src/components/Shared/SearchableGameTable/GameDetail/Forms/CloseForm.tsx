@@ -5,6 +5,7 @@ import { Game } from "../../../../../model/Game";
 import useAxios from "../../../../../hooks/useAxios";
 import AwesomeButton from "../../../AwesomeButton/AwesomeButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Alert from '../../../Alert/Alert';
 
 export interface CloseGameFormProps {
     game: Game;
@@ -54,7 +55,7 @@ const CloseGameForm = (props: CloseGameFormProps) => {
         setResult("DRAW");
     }, [homeTeamGoals, awayTeamGoals]);
 
-    const { loading, response, error, sendData } = useAxios({
+    const { loading, response, sendData } = useAxios({
         lazy: true,
         method: "PUT",
         url: `/game`,
@@ -79,6 +80,7 @@ const CloseGameForm = (props: CloseGameFormProps) => {
                 }
             );
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [response]);
 
     const disableSubmitButton = loading || Number.isNaN(homeTeamGoals) 
@@ -99,9 +101,9 @@ const CloseGameForm = (props: CloseGameFormProps) => {
                 Goles {props.game.awayTeam.name} (Visitante):
                 <input className="close-game-form-number-input" type="number" value={awayTeamGoals} onChange={(e) => changeAwayTeamGoals(e)} />
             </p>
-            <div className="close-game-form-alert">
+            <Alert type="pikachu">
                 <strong>Resultado:</strong> {prettyPrintResult()}
-            </div>
+            </Alert>
             <p>
                 <label>
                     <input type="checkbox" checked={confirmation} onChange={() => setConfirmation(!confirmation)} />
