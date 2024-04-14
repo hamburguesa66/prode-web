@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProdeLogo from "../Shared/ProdeLogo";
 import ClickableSpan from "../Shared/ClickableSpan/ClickableSpan";
+import Avatar from "../Shared/Avatar/Avatar";
 
 const Header = () => {
     const { principal, setPrincipal } = useUserContext();
@@ -23,9 +24,11 @@ const Header = () => {
             {
                 principal.isAuthenticated &&
                 <>
-                    <p>Hola, {principal.username}</p>
                     <nav>
                         <ul>
+                            <li>
+                                <Avatar user={principal} size="md" /> {principal.name}
+                            </li>
                             <li>
                                 <ClickableSpan onClick={() => navigate("/home")}>
                                     <FontAwesomeIcon icon="house-flag" /> Home

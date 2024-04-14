@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AwesomeButton from "./AwesomeButton/AwesomeButton";
 import SearchInput from "./SearchInput/SearchInput";
 import { User } from "../../model/User";
-import dayjs from "dayjs";
+import Avatar from "./Avatar/Avatar";
 
 export interface UserSelectorProps {
     title: string;
@@ -49,8 +49,8 @@ const UserSelector = (props: UserSelectorProps) => {
                 <table>
                     <thead>
                         <tr>
-                            <th><FontAwesomeIcon icon="user-tie" className="ml-5" /></th>
-                            <th><FontAwesomeIcon icon="calendar" /></th>
+                            <th><FontAwesomeIcon icon="image" className="ml-5" /></th>
+                            <th><FontAwesomeIcon icon="user-tie" /></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -69,10 +69,10 @@ const UserSelector = (props: UserSelectorProps) => {
                                 users.map(it =>
                                     <tr key={it.uuid}>
                                         <td className="text-middle">
-                                            {it.name}
+                                            <Avatar user={it} size="sm" />
                                         </td>
                                         <td className="text-middle">
-                                            {dayjs(it.createdDate).format("DD/MM HH:mm")}
+                                            {it.name}
                                         </td>
                                         <td className="text-right text-middle">
                                             <AwesomeButton onClick={() => props.onSelect(it)} >

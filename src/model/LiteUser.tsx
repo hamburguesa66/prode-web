@@ -1,9 +1,5 @@
-export class LiteUser {
-  username: string | undefined;
+export interface LiteUser {
+  name: string;
   isAdmin: Boolean;
-
-  constructor() {
-    this.username = undefined;
-    this.isAdmin = false;
-  }
+  imgUrl: string;
 }

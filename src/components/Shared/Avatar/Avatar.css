@@ -1,0 +1,16 @@
+.user-avatar {
+    vertical-align: middle;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.user-avatar-md {
+    width: 36px;
+    height: 36px;
+}
+
+.user-avatar-sm {
+    width: 24px;
+    height: 24px;
+}

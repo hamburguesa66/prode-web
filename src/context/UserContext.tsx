@@ -2,14 +2,16 @@ import React, { PropsWithChildren, useContext, useEffect, useState } from "react
 
 export class Principal {
   isAuthenticated: Boolean;
-  username: string | undefined;
+  name: string | undefined;
   isAdmin: Boolean;
+  imgUrl: string | undefined;
   token: string | undefined;
 
   constructor() {
     this.isAuthenticated = false;
-    this.username = undefined;
+    this.name = undefined;
     this.isAdmin = false;
+    this.imgUrl = "";
     this.token = undefined;
   }
 }

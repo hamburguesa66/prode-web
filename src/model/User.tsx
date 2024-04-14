@@ -4,6 +4,7 @@ export interface User {
     isApproved: Boolean | undefined,
     isActive: Boolean | undefined,
     isAdmin: Boolean | undefined,
+    imgUrl: string,
     createdDate: Date,
     lastLoginDate: Date | undefined
 }

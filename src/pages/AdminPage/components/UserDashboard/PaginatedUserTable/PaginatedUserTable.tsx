@@ -7,6 +7,7 @@ import { Page } from '../../../../../model/Page';
 import { User } from '../../../../../model/User';
 import useMediaQuery from '../../../../../hooks/useMediaQuery';
 import ClickableSpan from '../../../../../components/Shared/ClickableSpan/ClickableSpan';
+import Avatar from '../../../../../components/Shared/Avatar/Avatar';
 
 export interface PaginatedUserTableProps {
     loading: boolean,
@@ -90,7 +91,7 @@ const PaginatedUserTable = (props: PaginatedUserTableProps) => {
                         ) : (
                             props.pageable.data.map((it, idx) =>
                                 <tr key={idx}>
-                                    <td className="text-center text-middle">{usernameF(it)}</td>
+                                    <td className="text-center text-middle"><Avatar user={it} size="sm" /> {usernameF(it)}</td>
                                     <td className="text-center text-middle">{lastLoginDateF(it)}</td>
                                     <td className="text-center text-middle">{isActiveF(it)}</td>
                                     <td className="text-center text-middle">{actions(it)}</td>

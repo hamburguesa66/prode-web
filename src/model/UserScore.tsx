@@ -1,6 +1,7 @@
+import { User } from "./User";
+
 export interface UserScore {
-    uuid: string,
-    username: string,
+    user: User,
     points: number,
     played: number,
     won: number,

@@ -34,8 +34,9 @@ const LoginForm = () => {
       const data = response.data as LoginResponse;
       setPrincipal({
         isAuthenticated: true,
-        username: data.user.username,
+        name: data.user.name,
         isAdmin: data.user.isAdmin,
+        imgUrl: data.user.imgUrl,
         token: data.token
       });
     }

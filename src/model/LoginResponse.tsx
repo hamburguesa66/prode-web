@@ -1,11 +1,6 @@
 import { LiteUser } from "./LiteUser";
 
-export class LoginResponse {
+export interface LoginResponse {
   user: LiteUser;
   token: string;
-
-  constructor() {
-    this.user = new LiteUser();
-    this.token = "";
-  }
 }

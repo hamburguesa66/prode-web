@@ -1,3 +1,4 @@
+import Avatar from '../../../../components/Shared/Avatar/Avatar';
 import { UserScore } from '../../../../model/UserScore';
 import './RankingTable.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,9 +31,7 @@ const RankingTable = (props: RankingTableProps) => {
                         props.scores.map((it, idx) =>
                             <tr>
                                 <td className="text-center">{idx + 1}</td>
-                                <td className="text-center">
-                                    {it.username}
-                                </td>
+                                <td className="text-center"><Avatar user={it.user} size="sm" /> {it.user.name}</td>
                                 <td className="text-center">{it.points}</td>
                                 <td className="text-center">{it.accuracy.toFixed(0)}% ({it.won}/{it.played})</td>
                             </tr>

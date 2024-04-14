@@ -5,6 +5,7 @@ import { Game } from '../../../../model/Game';
 import { User } from '../../../../model/User';
 import { Bet } from '../../../../model/Bet';
 import dayjs from 'dayjs';
+import Avatar from '../../../../components/Shared/Avatar/Avatar';
 
 
 interface FaceToFaceGameTableProps {
@@ -67,11 +68,11 @@ const FaceToFaceGameTable = (props: FaceToFaceGameTableProps) => {
                                 {props.games?.map(it => <td className="text-center">{header(it)}</td>)}
                             </tr>
                             <tr className="face-to-face-table-tr-1">
-                                <td className="text-center">{props.userA?.name}</td>
+                                <td className="text-center"><Avatar user={props.userA!} size="sm" /> {props.userA?.name}</td>
                                 {props.games?.map(it => <td className="text-center">{userBetsRow(it, props.userABets || [])}</td>)}
                             </tr>
                             <tr className="face-to-face-table-tr-2">
-                                <td className="text-center">{props.userB?.name}</td>
+                                <td className="text-center"><Avatar user={props.userB!} size="sm" /> {props.userB?.name}</td>
                                 {props.games?.map(it => <td className="text-center">{userBetsRow(it, props.userBBets || [])}</td>)}
                             </tr>
                         </tbody>
