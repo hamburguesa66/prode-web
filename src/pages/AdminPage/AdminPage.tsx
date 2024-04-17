@@ -7,12 +7,14 @@ import CreateCompetitionForm from "./components/CreateCompetitionForm";
 import GameAdminSection from "./components/GameAdminSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
+import CreateChallengeForm from "./components/CreateChallengeForm";
 
 enum AdminPageActions {
     Games = "Partidos que requieren atención",
     CreateTeam = "Crear un equipo",
     CreateCompetition = "Crear una competición",
     CreateGame = "Crear un partido",
+    CreateChallenge = "Crear un desafío",
     Users = "Ver usuarios"
 }
 
@@ -30,7 +32,7 @@ const AdminPage = () => {
                 <Navigate to="/" replace={true} />
             ) : (
                 <>
-                    <h2><FontAwesomeIcon icon="screwdriver-wrench" /> Administraci&oacute;n</h2>
+                    <h2><FontAwesomeIcon icon="gauge-high" /> Administraci&oacute;n</h2>
                     <p>Fusce diam dolor, aliquam et tortor a, porttitor porta augue. Nulla facilisi. Vestibulum et sem eu nunc imperdiet volutpat ut a lectus. Proin consequat justo luctus nulla sollicitudin elementum. In neque nibh, hendrerit convallis ullamcorper eget, interdum nec nisi. Morbi maximus porttitor ex ac lobortis.</p>
                     <select className="full-width" defaultValue={action} onChange={(e) => changeAction(e)}>
                         {Object.values(AdminPageActions).map(it => <option value={it}>{it}</option>)}
@@ -39,6 +41,7 @@ const AdminPage = () => {
                     {action === AdminPageActions.CreateTeam && <CreateTeamForm />}
                     {action === AdminPageActions.CreateCompetition && <CreateCompetitionForm />}
                     {action === AdminPageActions.CreateGame && <CreateGameForm />}
+                    {action === AdminPageActions.CreateChallenge && <CreateChallengeForm />}
                     {action.valueOf() === AdminPageActions.Users && <UserDashboard />}
                 </>
             )}

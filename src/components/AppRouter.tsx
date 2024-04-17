@@ -9,6 +9,7 @@ import ArchivePage from "../pages/ArchivePage/ArchivePage";
 import RulesetPage from "../pages/RulesetPage/RulesetPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
+import ChallengePage from "../pages/ChallengePage/ChallengePage";
 
 export const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ export const AppRouter = () => {
           <Route path="/archive" Component={ArchivePage} />
           <Route path="/admin" Component={AdminPage} />
           <Route path="/rules" Component={RulesetPage} />
+          <Route path="/challenges" Component={ChallengePage} />
         </Routes>
       </div>
       <footer style={{ border: "none", textAlign: "center" }}>

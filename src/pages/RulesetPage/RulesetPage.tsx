@@ -12,7 +12,7 @@ const RulesetPage = () => {
                 <Navigate to="/" replace={true} />
             ) : (
                 <>
-                    <Jumbotron icon="book" title="Reglamento" />
+                    <Jumbotron icon="book-skull" title="Reglamento" />
                     <Ruleset />
                 </>
             )}

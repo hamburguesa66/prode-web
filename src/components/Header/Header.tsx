@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProdeLogo from "../Shared/ProdeLogo";
 import ClickableSpan from "../Shared/ClickableSpan/ClickableSpan";
 import Avatar from "../Shared/Avatar/Avatar";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const Header = () => {
     const { principal, setPrincipal } = useUserContext();
+    const isDesktop = useMediaQuery('(min-width: 960px)');
     const navigate = useNavigate();
 
     const logout = () => {
@@ -24,11 +26,14 @@ const Header = () => {
             {
                 principal.isAuthenticated &&
                 <>
+                    {!isDesktop && <>
+                        <Avatar user={principal} size="md" /> {principal.name}
+                    </>}
                     <nav>
                         <ul>
-                            <li>
+                            {isDesktop && <li>
                                 <Avatar user={principal} size="md" /> {principal.name}
-                            </li>
+                            </li>}
                             <li>
                                 <ClickableSpan onClick={() => navigate("/home")}>
                                     <FontAwesomeIcon icon="house-flag" /> Home
@@ -36,7 +41,7 @@ const Header = () => {
                             </li>
                             <li>
                                 <ClickableSpan onClick={() => navigate("/rules")}>
-                                    <FontAwesomeIcon icon="book" /> Reglamento
+                                    <FontAwesomeIcon icon="book-skull" /> Reglamento
                                 </ClickableSpan>
                             </li>
                             <li>
@@ -49,11 +54,16 @@ const Header = () => {
                                     <FontAwesomeIcon icon="box-archive" /> Archivo
                                 </ClickableSpan>
                             </li>
+                            <li>
+                                <ClickableSpan onClick={() => navigate("/challenges")}>
+                                    <FontAwesomeIcon icon="hourglass" /> Desaf&iacute;os
+                                </ClickableSpan>
+                            </li>
                             {
                                 principal.isAdmin &&
                                 <li>
                                     <ClickableSpan onClick={() => navigate("/admin")}>
-                                        <FontAwesomeIcon icon="screwdriver-wrench" /> Administraci&oacute;n
+                                        <FontAwesomeIcon icon="gauge-high" /> Admin
                                     </ClickableSpan>
                                 </li>
                             }

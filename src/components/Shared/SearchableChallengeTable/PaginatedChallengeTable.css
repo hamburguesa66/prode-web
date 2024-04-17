@@ -1,0 +1,9 @@
+#paginated-challenge-table-container {
+    background-color: #fafafa;
+    height: 510px; /* 35.4 + (48 * 10) */
+}
+
+#paginated-challenge-table-container-mobile {
+    background-color: #fafafa;
+    height: 615.4px; /* 35.4 + (58 * 10) */
+}
