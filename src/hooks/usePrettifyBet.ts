@@ -15,6 +15,12 @@ const prettyResult = (game: Game, bet?: Bet) => {
                 return `Gana ${game.awayTeam.name} (V)`;
             case 'DRAW':
                 return `Empate (E)`;
+            case 'HOME_OR_DRAW':    
+                return `Gana o Empata ${game.homeTeam.name} (L)`;
+            case 'AWAY_OR_DRAW':    
+                return `Gana o Empata ${game.awayTeam.name} (V)`;
+            case 'HOME_OR_AWAY':    
+                return `Gana ${game.homeTeam.name} (L) o ${game.awayTeam.name} (V)`;
         }
     }
     return 'Ninguna';

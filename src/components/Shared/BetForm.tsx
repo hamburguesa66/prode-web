@@ -14,9 +14,17 @@ export interface GamePanelProps {
 
 const BetForm = (props: GamePanelProps) => {
     const [betResult, setBetResult] = useState<string>(props.bet?.gameResult || "");
+    const [betType, setBetType] = useState<string>(props.bet?.betType || "CLASSIC");
+
 
     const changeBetResult = (e: React.FormEvent<HTMLSelectElement>): void => {
         setBetResult(e.currentTarget.value);
+    };
+
+    const changeBetType = (e: React.FormEvent<HTMLSelectElement>): void => {
+        console.log(e.currentTarget.value)
+        setBetType(e.currentTarget.value);
+        setBetResult(""); 
     };
 
     const { response, loading, sendData } = useAxios({
@@ -25,7 +33,8 @@ const BetForm = (props: GamePanelProps) => {
         url: `/bet`,
         data: {
             gameId: props.game.id,
-            result: betResult
+            result: betResult,
+            betType: betType
         }
     });
 
@@ -48,17 +57,29 @@ const BetForm = (props: GamePanelProps) => {
         <>
             <p>
                 Tipo de apuesta:
-                <select className="full-width">
-                    <option selected disabled={true}>Cl&aacute;sica (3 puntos)</option>
+                <select className="full-width" value={betType} onChange={changeBetType}>
+                    <option value="CLASSIC">Cl&aacute;sica (3 puntos)</option>
+                    <option value="DOUBLE_CHANCE">Doble oportunidad (1 punto)</option>
                 </select>
             </p>
             <p>
                 Tu resultado:
-                <select className="full-width" value={betResult} onChange={(e) => changeBetResult(e)}>
-                    {!props.bet && <option value={""} disabled={true}>Seleccione una opci&oacute;n</option>}
-                    <option value="HOME_TEAM_WON">Gana {props.game.homeTeam.name} (Local)</option>
-                    <option value="AWAY_TEAM_WON">Gana {props.game.awayTeam.name} (Visitante)</option>
-                    <option value="DRAW">Empate</option>
+                <select className="full-width" value={betResult} onChange={changeBetResult}>
+                    {!props.bet && <option value="" disabled={true}>Seleccione una opci&oacute;n</option>}
+                    {betType === "CLASSIC" && (
+                        <>
+                            <option value="HOME_TEAM_WON">Gana {props.game.homeTeam.name} (Local)</option>
+                            <option value="AWAY_TEAM_WON">Gana {props.game.awayTeam.name} (Visitante)</option>
+                            <option value="DRAW">Empate</option>
+                        </>
+                    )}
+                    {betType === "DOUBLE_CHANCE" && (
+                        <>
+                            <option value="HOME_OR_DRAW">Gana {props.game.homeTeam.name} o Empate</option>
+                            <option value="HOME_OR_AWAY">Gana {props.game.homeTeam.name} o Gana {props.game.awayTeam.name}</option>
+                            <option value="AWAY_OR_DRAW">Gana {props.game.awayTeam.name} o Empate</option>
+                        </>
+                    )}
                 </select>
             </p>
             <AwesomeButton disabled={btnDisabled} loading={loading} onClick={() => sendData()} >
