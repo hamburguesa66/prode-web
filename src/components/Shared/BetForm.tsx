@@ -14,7 +14,7 @@ export interface GamePanelProps {
 
 const BetForm = (props: GamePanelProps) => {
     const [betResult, setBetResult] = useState<string>(props.bet?.gameResult || "");
-    const [betType, setBetType] = useState<string>(props.bet?.betType || "CLASSIC");
+    const [betType, setBetType] = useState<string>(props.bet?.type || "");
 
 
     const changeBetResult = (e: React.FormEvent<HTMLSelectElement>): void => {
@@ -22,7 +22,6 @@ const BetForm = (props: GamePanelProps) => {
     };
 
     const changeBetType = (e: React.FormEvent<HTMLSelectElement>): void => {
-        console.log(e.currentTarget.value)
         setBetType(e.currentTarget.value);
         setBetResult(""); 
     };
@@ -51,13 +50,14 @@ const BetForm = (props: GamePanelProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.bet]);
     
-    const btnDisabled = betResult.length === 0 || props.bet?.gameResult === betResult;
+    const btnDisabled = betResult.length === 0 
 
     return (
         <>
             <p>
                 Tipo de apuesta:
                 <select className="full-width" value={betType} onChange={changeBetType}>
+                    {!betType && <option value="" disabled={true}>Seleccione una opci&oacute;n</option>}
                     <option value="CLASSIC">Cl&aacute;sica (3 puntos)</option>
                     <option value="DOUBLE_CHANCE">Doble oportunidad (1 punto)</option>
                 </select>
@@ -75,9 +75,9 @@ const BetForm = (props: GamePanelProps) => {
                     )}
                     {betType === "DOUBLE_CHANCE" && (
                         <>
-                            <option value="HOME_OR_DRAW">Gana {props.game.homeTeam.name} o Empate</option>
-                            <option value="HOME_OR_AWAY">Gana {props.game.homeTeam.name} o Gana {props.game.awayTeam.name}</option>
-                            <option value="AWAY_OR_DRAW">Gana {props.game.awayTeam.name} o Empate</option>
+                            <option value="AWAY_TEAM_WON">Gana {props.game.homeTeam.name} o Empate</option>
+                            <option value="DRAW">Gana {props.game.homeTeam.name} o Gana {props.game.awayTeam.name}</option>
+                            <option value="HOME_TEAM_WON">Gana {props.game.awayTeam.name} o Empate</option>
                         </>
                     )}
                 </select>

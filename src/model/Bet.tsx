@@ -3,6 +3,6 @@ export interface Bet {
     userUuid: string | undefined;
     gameId: number;
     gameResult: string;
-    betType: string;
+    type: string;
     date: Date;
 }
