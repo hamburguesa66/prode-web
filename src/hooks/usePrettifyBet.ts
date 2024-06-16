@@ -1,4 +1,4 @@
-import { Bet } from "../model/Bet";
+import { Bet, BetType } from "../model/Bet";
 import { Game } from "../model/Game";
 
 interface UsePrettifyBetInput {
@@ -7,8 +7,12 @@ interface UsePrettifyBetInput {
 }
 
 const prettyResult = (game: Game, bet?: Bet) => {
+  if(!bet) {
+    return "Ninguna";
+  }
+
   if (bet) {
-    if (bet.type === "CLASSIC") {
+    if (bet.type === BetType.CLASSIC) {
       switch (bet.gameResult) {
         case "HOME_TEAM_WON":
           return `Gana ${game.homeTeam.name} (L)`;
@@ -18,28 +22,30 @@ const prettyResult = (game: Game, bet?: Bet) => {
           return `Empate (E)`;
       }
     }
-    else if (bet.type === "DOUBLE_CHANCE") {
+    else if (bet.type === BetType.DOUBLE_CHANCE) {
       switch (bet.gameResult) {
         case "AWAY_TEAM_WON":
-          return `Gana o Empate ${game.homeTeam.name} (L)`;
+          return `Gana ${game.homeTeam.name} (L) o Empate (E)`;
         case "HOME_TEAM_WON":
-          return `Gana o Empate ${game.awayTeam.name} (V)`;
+          return `Gana ${game.awayTeam.name} (V) o Empate (E)`;
         case "DRAW":
           return `Gana ${game.homeTeam.name} (L) o Gana ${game.awayTeam.name} (V)`;
       }
     }
   }
-  return "Ninguna";
 };
 
 const prettyType = (bet?: Bet) => {
-  if (bet?.type === "CLASSIC") {
-    return "Clásica (3 puntos)";
-  } else if (bet?.type === "DOUBLE_CHANCE") {
-    return "Doble oportunidad (1 puntos)";
-
+  if(!bet) {
+    return "Ninguna";
   }
-  return "Ninguna";
+
+  switch (bet.type) {
+    case BetType.CLASSIC:
+      return "Clásica (3 puntos)";
+    case BetType.DOUBLE_CHANCE:
+      return "Doble oportunidad (1 punto)";
+  }
 };
 
 const prettyOutcome = (
@@ -47,9 +53,9 @@ const prettyOutcome = (
   bet?: Bet
 ): { success: boolean; message: string } => {
   if (bet && game.result) {
-    if (bet?.type === "CLASSIC" && bet.gameResult === game.result) {
+    if (bet?.type === BetType.CLASSIC && bet.isWinningBet) {
       return { success: true, message: "Ganaste 3 puntos" };
-    } else if (bet?.type === "DOUBLE_CHANCE" && bet.gameResult !== game.result) {
+    } else if (bet?.type === BetType.DOUBLE_CHANCE && bet.isWinningBet) {
         return { success: true, message: "Ganaste 1 punto" };
     }
     else{

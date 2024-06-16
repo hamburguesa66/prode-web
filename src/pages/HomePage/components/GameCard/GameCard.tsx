@@ -123,7 +123,10 @@ const GameCard = (props: GamePanelProps) => {
                         <tr>
                             <td colSpan={4} className="text-center" style={{ backgroundColor: getFooterBackgroundColor(), borderRadius: "10px" }}>
                                 <p>
-                                    <strong>Tu apuesta:</strong> {result}
+                                    <strong>Tu apuesta:</strong>
+                                </p>
+                                <p>
+                                    <small>{result}</small>
                                 </p>
                                 {props.game.state === 'NOT_STARTED' &&
                                     <button type="button" onClick={() => setOpenDialog(true)}>

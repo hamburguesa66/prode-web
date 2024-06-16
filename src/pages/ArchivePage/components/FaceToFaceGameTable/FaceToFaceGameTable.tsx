@@ -3,7 +3,7 @@ import './FaceToFaceGameTable.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Game } from '../../../../model/Game';
 import { User } from '../../../../model/User';
-import { Bet } from '../../../../model/Bet';
+import { Bet, BetType } from '../../../../model/Bet';
 import dayjs from 'dayjs';
 import Avatar from '../../../../components/Shared/Avatar/Avatar';
 
@@ -40,8 +40,13 @@ const FaceToFaceGameTable = (props: FaceToFaceGameTableProps) => {
             return <FontAwesomeIcon icon="minus" />;
         }
 
-        if (bet.gameResult === game.result) {
-            return <FontAwesomeIcon icon="square-check" color="#237804" />;
+        if (bet.isWinningBet) {
+            switch (bet.type) {
+                case BetType.CLASSIC:
+                    return <FontAwesomeIcon icon="square-check" color="#237804" />;
+                case BetType.DOUBLE_CHANCE:
+                    return <FontAwesomeIcon icon="square-check" color="#003eb3" />;
+            }
         }
 
         return <FontAwesomeIcon icon="circle-xmark" color="#a8071a" />;
